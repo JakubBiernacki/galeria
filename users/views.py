@@ -6,7 +6,7 @@ from django.contrib import messages
 from .form import Register_Form
 #logowanie
 from django.contrib.auth import authenticate, login,logout
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def rejestracja(request):
@@ -33,3 +33,7 @@ def logout_user(request):
     logout(request)
     messages.success(request,"Zostałeś poprawnie wylogowany")
     return redirect('index')
+
+@login_required
+def profile(request):
+    return render(request,'users/profile.html')

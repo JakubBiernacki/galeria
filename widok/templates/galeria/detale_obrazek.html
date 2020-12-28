@@ -54,10 +54,10 @@
     </p>
     <!--    zdjecie-->
 
-    <div class="card">
+    <div class="card" >
       <img src="{{obrazek.obrazek_path}}" min-width="1024px" min-height="768px" class="card-img-top">
 
-      <div class="card-body">
+      <div class="card-body" id="ocena">
 
            <div class="row p h1 justify-content-between">
                 <span class="col-12 col-md-6">Tytuł: {{obrazek.tytul}}</span>
@@ -123,7 +123,7 @@
                     {%endif%}
                 </form>
                {%else%}
-               <a href="{%url 'login'%}"> Zaloguj się</a> aby dodać ocene
+               <a href="{% url 'login' %}?next={{request.path}}#ocena"> Zaloguj się</a> aby dodać ocene
                {%endif%}
 
             </div>
@@ -141,7 +141,7 @@
 
     <!--    sekcja kometarzy-->
     <div class="row d-flex justify-content-center">
-        <p class="display-3 display-md-1 alert alert-light">Sekcja komentarzy</p>
+        <p class="display-3 display-md-1 alert alert-light" id="komentarz">Sekcja komentarzy</p>
     </div>
 
 
@@ -164,7 +164,7 @@
 
                                 <div class="panel-body">
                                 {%if user.is_authenticated%}
-                                    <form action="#" method="post">{% csrf_token %}
+                                    <form action="{{request.path}}#komentarz" method="post">{% csrf_token %}
 
                                         <div class="form-group">
                                             <label>Autor:</label>
@@ -182,7 +182,7 @@
 
                                     </form>
                                     {%else%}
-                                    <p class="mt-5 mb-5"><a href="{%url 'login'%}"> Zaloguj się</a> aby dodać komentarz</p>
+                                    <p class="mt-5 mb-5"><a href="{% url 'login' %}?next={{request.path}}#komentarz"> Zaloguj się</a> aby dodać komentarz</p>
                                     {%endif%}
 
                                     <div class="clearfix"></div>

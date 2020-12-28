@@ -31,7 +31,7 @@
             {{user}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Profil</a>
+          <a class="dropdown-item" href="{%url 'profile'%}">Profil</a>
 {% if request.user.is_superuser %}
           <a class="dropdown-item" href="admin">Panel administracyjny</a>
 {%endif%}
