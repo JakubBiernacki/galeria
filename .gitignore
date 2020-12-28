@@ -1,0 +1,13 @@
+.idea/.gitignore
+.idea/galeria.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/inspectionProfiles/profiles_settings.xml
+widok/__pycache__/
+db.sqlite3
+widok/__pycache__/admin.cpython-39.pyc
+widok/__pycache__/forms.cpython-39.pyc
+widok/__pycache__/models.cpython-39.pyc
+widok/__pycache__/urls.cpython-39.pyc
+widok/__pycache__/views.cpython-39.pyc
+config.json

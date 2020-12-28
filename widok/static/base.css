@@ -1,0 +1,40 @@
+.zdjecie{
+    -webkit-transition: all 1s ease; -moz-transition: all 1s ease; -o-transition: all 1s ease;
+}
+.zdjecie:hover {
+    -o-transition: all 0.6s;
+    -moz-transition: all 0.6s;
+    -webkit-transition: all 0.6s;
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -webkit-transform: scale(1.05);
+}
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    }
+.bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    }
+ .obr
+ {
+ height:234px;
+ }
+ .jumbotron
+ {
+ background-color: #f8f9fa!important;
+ border: 1px solid rgba(0,0,0,.125);
+ }
+
+
+
+ @media screen and (max-width: 768px) {
+  .obr
+ {
+    height:auto;
+    min-height:234px;
+ }
+}

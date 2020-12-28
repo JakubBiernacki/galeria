@@ -1,0 +1,38 @@
+   #kosz:hover
+    {
+        color:red;
+        transition: 0.5s;
+    }
+    #edit:hover{
+    color:#007bff;
+    transition: 0.5s;
+    }
+    svg{
+		-webkit-transition: all 0.5s ease; -moz-transition: all 1s ease; -o-transition: all 1s ease;
+	}
+	svg:hover {
+		-o-transition: all 0.6s;
+		-moz-transition: all 0.6s;
+		-webkit-transition: all 0.6s;
+		-moz-transform: scale(1.1);
+		-o-transform: scale(1.1);
+		-webkit-transform: scale(1.05);
+	}
+	#cofnij:hover {
+		-o-transition: all 0.6s;
+		-moz-transition: all 0.6s;
+		-webkit-transition: all 0.6s;
+		-moz-transform: scale(1.1);
+		-o-transform: scale(1.1);
+		-webkit-transform: scale(1.15);
+	}
+
+
+#id
+{
+	background-color: #fff;
+}
+
+
+
+
