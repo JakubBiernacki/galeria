@@ -2,7 +2,31 @@
 {%load crispy_forms_tags%}
 
 {%block content%}
-<div class="container">
-    <h1>{{user.username}}</h1>
-</div>
+<main role="main"  class="container">
+      <div class="row">
+        <div class="col-md-9">
+
+          {%if messages%}
+                {%for message in messages%}
+                <div class="alert alert-{{message.tags}}">
+                    {{message}}
+                </div>
+                {%endfor%}
+          {%endif%}
+          <div class="content-section jumbotron pt-4">
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{user.profile.image.url}}">
+            <div class="media-body">
+                <h2 class="account-heading">{{user.username}}</h2>
+                <p class="text-secondary">{{user.email}}</p>
+            </div>
+        </div>
+
+    </div>
+
+        </div>
+
+
+    </div>
+</main>
 {%endblock content%}
