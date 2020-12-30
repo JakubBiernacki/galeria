@@ -63,11 +63,11 @@
           <div class="row d-flex justify-content-between ">
         <div class="col-12 col-md-6">
 
-        <img src="{{obrazek.autor.profile.image.url}}" width="32px">
+        <img class="rounded-circle" src="{{obrazek.autor.profile.image.url}}" width="32px" height='32px'>
 
         {{obrazek.autor}}
             </div>
-        <div class="col-12 col-md-6 text-right">
+        <div class="col-12 col-md-6 text-md-right">
             <small class="text-muted">Data publikacji: {{ obrazek.data_publikacji|date:"F d Y" }}</small>
             <!--        edycja-->
 
@@ -107,8 +107,12 @@
 
 
                         <br>
+			{%if ilosc_ocen != 0%}
                         {{srednia}}
                         <small>{{ilosc_ocen}}</small>
+			{%else%}
+			<div class=''>{{ilosc_ocen}}</div>
+			{%endif%}
                     </span>
 
            </div>
