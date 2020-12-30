@@ -38,14 +38,15 @@ def logout_user(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
-        old_img = request.user.profile.image.path
+        old_img = request.user.profile.image
+
         u_form = UserUpdateForm(request.POST,instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
         if u_form.is_valid() and p_form.is_valid():
 
-            if len(request.FILES) !=0:
-                os.remove(old_img)
+            if len(request.FILES) !=0 and old_img.url != '/media/default.jpg':
+                os.remove(old_img.path)
 
 
             u_form.save()
