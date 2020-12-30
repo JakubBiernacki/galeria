@@ -18,7 +18,7 @@
 .rating:not(:checked) > label {
     float:right;
     width:1em;
-    padding:0 .1em;
+
     overflow:hidden;
     white-space:nowrap;
     cursor:pointer;
@@ -27,6 +27,13 @@
     color:#ddd;
     
 }
+.rating> label:first-child {
+
+    padding:0em;
+
+
+}
+
 
 .rating:not(:checked) > label:before {
     content: '★ ';

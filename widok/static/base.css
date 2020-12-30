@@ -1,6 +1,6 @@
 
 main{
-margin-top: 2rem;
+margin-top: 1rem;
 
 }
 
@@ -46,7 +46,10 @@ margin-top: 2rem;
   vertical-align: middle;
 }
 
-
+.disabled {
+  pointer-events: none;
+  cursor: default;
+}
  .jumbotron
  {
  background-color: #f8f9fa!important;

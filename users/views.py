@@ -2,12 +2,13 @@
 from django.shortcuts import render,redirect
 #wiadomość
 from django.contrib import messages
-#rejestracja
-from .form import Register_Form
+#formularze
+from .form import Register_Form,UserUpdateForm,ProfileUpdateForm
 #logowanie
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
-# Create your views here.
+
+import os
 
 def rejestracja(request):
 
@@ -36,4 +37,29 @@ def logout_user(request):
 
 @login_required
 def profile(request):
-    return render(request,'users/profile.html')
+    if request.method == 'POST':
+        old_img = request.user.profile.image.path
+        u_form = UserUpdateForm(request.POST,instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+
+            if len(request.FILES) !=0:
+                os.remove(old_img)
+
+
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your accont has been updated!')
+            return redirect('profile')
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+
+    return render(request,'users/profile.html',context)
