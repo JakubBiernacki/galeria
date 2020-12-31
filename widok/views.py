@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Obrazek
 from .forms import Add_obrazek,Wybrana_ocena,Dodaj_kometarz
@@ -22,23 +23,39 @@ def index(request):
 
 
 # Usuwanie
+@login_required
 def remove(request,id_obrazka:int):
-    get_object_or_404(Obrazek,pk=id_obrazka).delete()
+    obrazek = get_object_or_404(Obrazek, pk=id_obrazka)
+    if request.user == obrazek.autor or request.user.is_superuser:
+        messages.info(request, f"Obrazek {obrazek.tytul} został poprawnie usunięty")
+        obrazek.delete()
+
+    else:
+        messages.error(request, "Nie masz uprawnień do tej operacji")
+
+
     return redirect('index')
 
 
 
 # Dodawanie obrazka
+@login_required
 def dodaj(request):
     if request.method == 'POST':
         form = Add_obrazek(request.POST)
 
         if form.is_valid():
             post = form.save(commit=False)
-            post.data_publikacji = timezone.now()
-            post.autor = User.objects.get(username=str(request.user.username))
-            post.save()
-            return redirect('widok_obrazka', id_obrazka=post.pk)
+
+            if post.obrazek_path.startswith('https://') and post.obrazek_path.endswith(('.jpg','.png','.jpeg')):
+                post.data_publikacji = timezone.now()
+                post.autor = User.objects.get(username=str(request.user.username))
+                post.save()
+                return redirect('widok_obrazka', id_obrazka=post.pk)
+            else:
+                messages.error(request, "Link jest niepoprawny lub niebezpieczny")
+                return render(request, 'galeria/formularz_obrazek.html', {'form': form, 'przycisk': 'Dodaj'})
+
     else:
         form = Add_obrazek
     return render(request, 'galeria/formularz_obrazek.html', {'form': form, 'przycisk': 'Dodaj'})
@@ -46,20 +63,26 @@ def dodaj(request):
 
 
 # edycja
+@login_required
 def edit(request,id_obrazka:int):
     obrazek = get_object_or_404(Obrazek,pk=id_obrazka)
+    if request.user == obrazek.autor or request.user.is_superuser:
 
-    if request.method == 'POST':
-        form = Add_obrazek(request.POST, instance=obrazek)  # wprowadza istniejace dane
+        if request.method == 'POST':
+            form = Add_obrazek(request.POST, instance=obrazek)  # wprowadza istniejace dane
 
-        if form.is_valid():
-            obrazek = form.save(commit=False)
-            obrazek.data_publikacji = timezone.now()
-            obrazek.save()
-            return redirect('widok_obrazka', id_obrazka=obrazek.id)
+            if form.is_valid():
+                obrazek = form.save(commit=False)
+                obrazek.data_publikacji = timezone.now()
+                obrazek.save()
+                return redirect('widok_obrazka', id_obrazka=obrazek.id)
+        else:
+            form =  Add_obrazek(instance=obrazek )
+        return render(request, 'galeria/formularz_obrazek.html', {'form': form, 'przycisk': 'edytuj post','obrazek': obrazek })
     else:
-        form =  Add_obrazek(instance=obrazek )
-    return render(request, 'galeria/formularz_obrazek.html', {'form': form, 'przycisk': 'edytuj post','obrazek': obrazek })
+        messages.error(request, "Nie masz uprawnień do tej operacji")
+        return redirect('widok_obrazka', id_obrazka=obrazek.id)
+
 
 
 #szczeg�y

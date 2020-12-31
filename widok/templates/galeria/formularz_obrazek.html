@@ -3,6 +3,14 @@
 
 
 <div class="container">
+    {%if messages%}
+       {%for message in messages%}
+          <div class="alert {%if message.tags == 'error'%}alert-danger {%else%}alert-{{message.tags}}{%endif%} alert-dismissible" role="alert">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+             {{message}}
+          </div>
+       {%endfor%}
+    {%endif%}
 
 
         <a class="btn  btn-lg" href=" {%if obrazek.id%} {%url 'widok_obrazka' obrazek.id%} {%else%} / {%endif%}">
