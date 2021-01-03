@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Obrazek
 from .forms import Add_obrazek,Wybrana_ocena,Dodaj_kometarz
 
+from math import floor
+
 
 
 #strona g��wna
@@ -14,12 +16,7 @@ def index(request):
 
     obrazki = Obrazek.objects.all().order_by('-data_publikacji')
 
-    obrazki = zip(obrazki,
-                  [x.kometarz_set.count() for x in obrazki],#ilosc kom
-                  [x.srednia_ocen() for x in obrazki],#srednia ocen
-                  [x.oceny_count() for x in obrazki])#ilo�� ocen
-
-    return render(request, 'galeria/pictures_list.html',{'zdjecia':obrazki})
+    return render(request, 'galeria/pictures_list.html',{'obrazki':obrazki})
 
 
 # Usuwanie
@@ -29,12 +26,13 @@ def remove(request,id_obrazka:int):
     if request.user == obrazek.autor or request.user.is_superuser:
         messages.info(request, f"Obrazek {obrazek.tytul} został poprawnie usunięty")
         obrazek.delete()
+        return redirect('index')
 
     else:
         messages.error(request, "Nie masz uprawnień do tej operacji")
 
 
-    return redirect('index')
+    return redirect('widok_obrazka',id_obrazka = obrazek.id)
 
 
 
@@ -92,24 +90,27 @@ def widok_obrazka(request,id_obrazka:int):
 
     if request.method == 'POST':
 
-        ocena = Wybrana_ocena(request.POST)
-        kom = Dodaj_kometarz(request.POST)
-
-        if ocena.is_valid():
+        formocena = Wybrana_ocena(request.POST)
+        formkom = Dodaj_kometarz(request.POST)
+        #ocena
+        if formocena.is_valid():
             if obrazek.czy_ocenil(request.user.id)>=1:
                 messages.error(request, "Prosze nie hakować ")
             else:
-                ocena = ocena.save(commit=False)
+                ocena = formocena.save(commit=False)
+
                 ocena.autor = request.user
                 ocena.obrazek = obrazek
+
                 ocena.save()
                 messages.info(request, "Dodano ocene")
 
 
             return redirect('widok_obrazka', id_obrazka=obrazek.id)
 
-        elif kom.is_valid():
-            kometarz = kom.save(commit=False)
+        #komentarz
+        elif formkom.is_valid():
+            kometarz = formkom.save(commit=False)
 
             kometarz.autor = request.user
             kometarz.obrazek_id = id_obrazka
@@ -120,36 +121,35 @@ def widok_obrazka(request,id_obrazka:int):
             return redirect('widok_obrazka', id_obrazka=obrazek.pk)
 
     else:
-        ocena = Wybrana_ocena
-        komform = Dodaj_kometarz
+        formocena = Wybrana_ocena
+        formkom = Dodaj_kometarz
 
 
-    # Kometarze
+
     kometarze = obrazek.kometarz_set.all().order_by('-data_publikacji')
 
-    ilosc_ocen = obrazek.oceny_count()
-    srednia = obrazek.srednia_ocen() if ilosc_ocen!=0 else 'brak'
-    if srednia !='brak':
-        pelne = int((srednia*2)//2)
-        gwiazdki = ([2]*pelne)+([1]*int(srednia*2-pelne*2))
+    #ile gwiazdek narysować
+    srednia = obrazek.srednia_ocen() if obrazek.oceny_count() else False
+    if srednia:
+        pelne = floor(srednia)
+        gwiazdki = [2]*pelne +[1] if srednia-pelne else [2]*pelne
         gwiazdki+= [0]*(5 - len(gwiazdki))
 
     else:
         gwiazdki=[0]*5
-    gwiazdki = ''.join(map(str, gwiazdki))
 
-    return render(request,'galeria/detale_obrazek.html',
-                  {'obrazek':obrazek,
-                   'ocena': ocena,
-                   'kom':komform,
+    czy_ocenil = obrazek.czy_ocenil(request.user.id) if request.user.id else False
+
+    obrazek_dane = {
+                   'obrazek':obrazek,
+                   'formocena': formocena,
+                   'formkom':formkom,
                    'kometarze':kometarze,
-                   'ilosc_ocen':ilosc_ocen,
-                   'srednia':srednia,
-                   'gwiazdki':gwiazdki[:5],
-                   'autor':obrazek.autor,
-                   'ocenil':obrazek.czy_ocenil(request.user.id) if request.user.id else False
-
+                   'gwiazdki':gwiazdki,
+                   'czy_ocenil': czy_ocenil,
                    }
-                  )
+
+
+    return render(request,'galeria/detale_obrazek.html',obrazek_dane)
 
 

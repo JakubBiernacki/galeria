@@ -17,18 +17,18 @@
 
     <div class="row">
 
-        {%for zdjecie,ilosc_kom,avg_ocen,ilosc_ocen in zdjecia%}
+        {%for obrazek in obrazki%}
         <figure class="col-md-6 col-lg-4">
-            <a href="{%url 'widok_obrazka' id_obrazka=zdjecie.id%}">
+            <a href="{%url 'widok_obrazka' id_obrazka=obrazek.id%}">
                 <div class="obr" >
-                    <img src="{{zdjecie.obrazek_path}}" style="height:100%; width:100%"  class="img-fluid zdjecie rounded ">
+                    <img src="{{obrazek.obrazek_path}}" style="height:100%; width:100%"  class="img-fluid zdjecie rounded ">
                 </div>
             </a>
 
-            <div class="bottom-left ">&#11088;: {{avg_ocen}}<small class="text-muted ml-1">{{ilosc_ocen}}</small></div>
+            <div class="bottom-left ">&#11088;: {{obrazek.srednia_ocen}}<small class="text-muted ml-1">{{obrazek.count}}</small></div>
             {{test}}
-            <div class="bottom-right">Komentarze: {{ilosc_kom}}</div>
-            <h3 class="text-center my-3 pb-2">{{zdjecie.tytul}}</h3>
+            <div class="bottom-right">Komentarze: {{obrazek.kometarz_set.count}}</div>
+            <h3 class="text-center my-3 pb-2">{{obrazek.tytul}}</h3>
         </figure>
 
         {%endfor%}
