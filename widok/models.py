@@ -23,7 +23,9 @@ class Obrazek(models.Model):
 
     def czy_ocenil(self,user_id):
         user = User.objects.get(id=user_id)
-        return self.oceny_set.filter(autor=user).count()
+        if not self.oceny_set.filter(autor=user).count():
+            return 0
+        return self.oceny_set.get(autor=user).ocena
 
 
 

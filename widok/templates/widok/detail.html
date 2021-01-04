@@ -99,10 +99,27 @@
             </div>
             <!--                formularz oceny-->
             <div name="star" >
-                {%if user.is_authenticated%}
-                <form action="#" method="post" class=" h5  pt-4">
+                {%if user.is_authenticated %}
+                    {%if czy_ocenil%}
+
+                    <div class="row h5  pt-4">
+                        <div class="col">
+                            <div class="rating ">
+                                {%for i in podglad_gwiazdek%}
+                                <input type="radio"
+                                       {%if i == czy_ocenil %} checked {%endif%}><label class="disabled"></label>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <button type="submit" class="  mb-1 ml-1 btn btn-primary " disabled>ocenione</button>
+                    {%else%}
+                    <form action="#" method="post" >
                     {% csrf_token %}
-                    <div class="row ">
+                    <div class="row h5  pt-4">
                         <div class="col">
                             <div class="rating ">
                                 {%for gwiazdka in formocena.ocena%}
@@ -112,14 +129,16 @@
                             </div>
                         </div>
                     </div>
-                    {%if czy_ocenil%}
-                    <button type="submit" class=" ml-1 btn btn-primary " disabled>Już ocenione</button>
-                    {%else%}
+
                     <button type="submit" class=" ml-1 btn btn-primary">Wyślij ocene</button>
                     {%endif%}
                 </form>
+
+
                 {%else%}
+                <div class="pt-4 pb-4">
                 <a href="{% url 'login' %}?next={{request.path}}"> Zaloguj się</a> aby dodać ocene
+                </div>
                 {%endif%}
             </div>
         </div>

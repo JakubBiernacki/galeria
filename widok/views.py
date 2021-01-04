@@ -7,38 +7,23 @@ from django.contrib.auth.decorators import login_required
 from .models import Obrazek
 from .forms import Add_obrazek,Wybrana_ocena,Dodaj_kometarz
 
-from math import floor
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import ListView,DetailView, CreateView,UpdateView, DeleteView
 
 
 
-#strona g��wna
-def index(request):
-
-    obrazki = Obrazek.objects.all().order_by('-data_publikacji')
-
-    return render(request, 'galeria/pictures_list.html',{'obrazki':obrazki})
-
-
-# Usuwanie
-@login_required
-def remove(request,id_obrazka:int):
-    obrazek = get_object_or_404(Obrazek, pk=id_obrazka)
-    if request.user == obrazek.autor or request.user.is_superuser:
-        messages.info(request, f"Obrazek {obrazek.tytul} został poprawnie usunięty")
-        obrazek.delete()
-        return redirect('index')
-
-    else:
-        messages.error(request, "Nie masz uprawnień do tej operacji")
-
-
-    return redirect('widok_obrazka',id_obrazka = obrazek.id)
+#główny widok
+class PhotoListView(ListView):
+    model = Obrazek
+    context_object_name = 'obrazki'
+    template_name = 'widok/home.html'
+    ordering = ['-data_publikacji']
 
 
 
 # Dodawanie obrazka
 @login_required
-def dodaj(request):
+def add(request):
     if request.method == 'POST':
         form = Add_obrazek(request.POST)
 
@@ -49,14 +34,14 @@ def dodaj(request):
                 post.data_publikacji = timezone.now()
                 post.autor = User.objects.get(username=str(request.user.username))
                 post.save()
-                return redirect('widok_obrazka', id_obrazka=post.pk)
+                return redirect("detail", id_obrazka=post.pk)
             else:
                 messages.error(request, "Link jest niepoprawny lub niebezpieczny")
-                return render(request, 'galeria/formularz_obrazek.html', {'form': form, 'przycisk': 'Dodaj'})
+                return render(request, 'widok/form.html', {'form': form, 'przycisk': 'Dodaj'})
 
     else:
         form = Add_obrazek
-    return render(request, 'galeria/formularz_obrazek.html', {'form': form, 'przycisk': 'Dodaj'})
+    return render(request, 'widok/form.html', {'form': form, 'przycisk': 'Dodaj'})
 
 
 
@@ -73,31 +58,58 @@ def edit(request,id_obrazka:int):
                 obrazek = form.save(commit=False)
                 obrazek.data_publikacji = timezone.now()
                 obrazek.save()
-                return redirect('widok_obrazka', id_obrazka=obrazek.id)
+                return redirect('detail', id_obrazka=obrazek.id)
         else:
             form =  Add_obrazek(instance=obrazek )
-        return render(request, 'galeria/formularz_obrazek.html', {'form': form, 'przycisk': 'edytuj post','obrazek': obrazek })
+        return render(request, 'widok/form.html', {'form': form, 'przycisk': 'edytuj post','obrazek': obrazek })
     else:
         messages.error(request, "Nie masz uprawnień do tej operacji")
-        return redirect('widok_obrazka', id_obrazka=obrazek.id)
+        return redirect('detail', id_obrazka=obrazek.id)
+
+# Usuwanie
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Obrazek
+    success_url = '/'
+
+    def test_func(self):
+        obrazek = self.get_object()
+        if self.request.user == obrazek.autor or self.request.user.is_superuser:
+            return True
+        return False
+
+# @login_required
+# def remove(request,id_obrazka:int):
+#     obrazek = get_object_or_404(Obrazek, pk=id_obrazka)
+#     if request.user == obrazek.autor or request.user.is_superuser:
+#         messages.info(request, f"Obrazek {obrazek.tytul} został poprawnie usunięty")
+#         obrazek.delete()
+#         return redirect('index')
+#
+#     else:
+#         messages.error(request, "Nie masz uprawnień do tej operacji")
+#
+#
+#     return redirect('detail',id_obrazka = obrazek.id)
+
 
 
 
 #szczeg�y
-def widok_obrazka(request,id_obrazka:int):
+def detail(request,id_obrazka:int):
     obrazek = get_object_or_404(Obrazek,pk=id_obrazka)
 
 
     if request.method == 'POST':
 
-        formocena = Wybrana_ocena(request.POST)
-        formkom = Dodaj_kometarz(request.POST)
+        form_ocena = Wybrana_ocena(request.POST)
+        form_kom = Dodaj_kometarz(request.POST)
         #ocena
-        if formocena.is_valid():
-            if obrazek.czy_ocenil(request.user.id)>=1:
+        if form_ocena.is_valid():
+            if obrazek.czy_ocenil(request.user.id):
                 messages.error(request, "Prosze nie hakować ")
             else:
-                ocena = formocena.save(commit=False)
+                ocena = form_ocena.save(commit=False)
 
                 ocena.autor = request.user
                 ocena.obrazek = obrazek
@@ -106,11 +118,11 @@ def widok_obrazka(request,id_obrazka:int):
                 messages.info(request, "Dodano ocene")
 
 
-            return redirect('widok_obrazka', id_obrazka=obrazek.id)
+            return redirect('detail', id_obrazka=obrazek.id)
 
         #komentarz
-        elif formkom.is_valid():
-            kometarz = formkom.save(commit=False)
+        elif form_kom.is_valid():
+            kometarz = form_kom.save(commit=False)
 
             kometarz.autor = request.user
             kometarz.obrazek_id = id_obrazka
@@ -118,11 +130,11 @@ def widok_obrazka(request,id_obrazka:int):
             kometarz.save()
 
             messages.info(request, "Dodano komentarz")
-            return redirect('widok_obrazka', id_obrazka=obrazek.pk)
+            return redirect('detail', id_obrazka=obrazek.pk)
 
     else:
-        formocena = Wybrana_ocena
-        formkom = Dodaj_kometarz
+        form_ocena = Wybrana_ocena
+        form_kom = Dodaj_kometarz
 
 
 
@@ -131,7 +143,7 @@ def widok_obrazka(request,id_obrazka:int):
     #ile gwiazdek narysować
     srednia = obrazek.srednia_ocen() if obrazek.oceny_count() else False
     if srednia:
-        pelne = floor(srednia)
+        pelne = int(srednia)
         gwiazdki = [2]*pelne +[1] if srednia-pelne else [2]*pelne
         gwiazdki+= [0]*(5 - len(gwiazdki))
 
@@ -142,14 +154,15 @@ def widok_obrazka(request,id_obrazka:int):
 
     obrazek_dane = {
                    'obrazek':obrazek,
-                   'formocena': formocena,
-                   'formkom':formkom,
+                   'formocena': form_ocena,
+                   'formkom':form_kom,
                    'kometarze':kometarze,
                    'gwiazdki':gwiazdki,
                    'czy_ocenil': czy_ocenil,
+                    'podglad_gwiazdek': [5,4,3,2,1]
                    }
 
 
-    return render(request,'galeria/detale_obrazek.html',obrazek_dane)
+    return render(request,'widok/detail.html',obrazek_dane)
 
 

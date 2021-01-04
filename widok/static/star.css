@@ -40,14 +40,14 @@
 }
 
 .rating > input:checked ~ label {
-    color: #f70;
+    color: gold;
     
 }
 
 .rating:not(:checked) > label:hover,
 .rating:not(:checked) > label:hover ~ label {
     color: gold;
-    
+
 }
 
 .rating > input:checked + label:hover,

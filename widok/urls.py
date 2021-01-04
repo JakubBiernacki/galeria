@@ -4,9 +4,9 @@ from . import views
 from users import views as user_views
 
 urlpatterns = [
-    path('',views.index,name='index'),
-    path('add/',views.dodaj,name='dodaj'),
-    path('obrazek/<int:id_obrazka>/',views.widok_obrazka,name='widok_obrazka'),
-    path('obrazek/<int:id_obrazka>/delete',views.remove,name='remove'),
+    path('',views.PhotoListView.as_view(),name='index'),
+    path('add/', views.add, name='add'),
+    path('obrazek/<int:id_obrazka>/',views.detail,name='detail'),
+    path('obrazek/<int:pk>/delete',views.PostDeleteView.as_view(),name='remove'),
     path('obrazek/<int:id_obrazka>/edit',views.edit,name='edit'),
 ]
