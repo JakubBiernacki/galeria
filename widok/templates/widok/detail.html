@@ -14,7 +14,7 @@
             </svg>
         </a>
         <div>
-            {% if user == autor or request.user.is_superuser%}
+            {% if user == obrazek.autor or user.is_superuser%}
             <!--        edycja-->
             <a class="btn  btn-lg" href="{%url 'edit' obrazek.id%}">
                 <svg id="edit" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square"

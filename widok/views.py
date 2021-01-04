@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.utils import timezone
-from django.contrib.auth.models import User
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -12,12 +12,51 @@ from django.views.generic import ListView,DetailView, CreateView,UpdateView, Del
 
 
 
+def link_check(path):
+    from PIL import Image
+    import requests
+    from io import BytesIO
+
+    if path.startswith('https://') and path.endswith(('.jpg', '.png', '.jpeg')):
+        try:
+            response = requests.get(path)
+            img = Image.open(BytesIO(response.content))
+
+        except:
+            error = "Nie można pobrać obrazu (link jest niepoprawny)"
+            return False, error
+        w, h = img.size
+        if w >= 640 and h >= 480:
+            return True, False
+        else:
+            error = 'obraz ma za niską rozdzielczość (min 640x480px)'
+
+
+    else:
+        error = "Link jest niepoprawny lub niebezpieczny"
+
+    return False, error
+
+
+
 #główny widok
 class PhotoListView(ListView):
     model = Obrazek
-    context_object_name = 'obrazki'
     template_name = 'widok/home.html'
     ordering = ['-data_publikacji']
+
+
+# Usuwanie
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Obrazek
+    success_url = '/'
+
+    def test_func(self):
+        obrazek = self.get_object()
+        if self.request.user == obrazek.autor or self.request.user.is_superuser:
+            return True
+        return False
+
 
 
 
@@ -28,15 +67,18 @@ def add(request):
         form = Add_obrazek(request.POST)
 
         if form.is_valid():
-            post = form.save(commit=False)
+            obrazek = form.save(commit=False)
 
-            if post.obrazek_path.startswith('https://') and post.obrazek_path.endswith(('.jpg','.png','.jpeg')):
-                post.data_publikacji = timezone.now()
-                post.autor = User.objects.get(username=str(request.user.username))
-                post.save()
-                return redirect("detail", id_obrazka=post.pk)
+            link_ok = link_check(obrazek.obrazek_path)
+
+            if link_ok[0]:
+
+                obrazek.data_publikacji = timezone.now()
+                obrazek.autor = request.user
+                obrazek.save()
+                return redirect("detail", id_obrazka=obrazek.pk)
             else:
-                messages.error(request, "Link jest niepoprawny lub niebezpieczny")
+                messages.error(request, link_ok[1])
                 return render(request, 'widok/form.html', {'form': form, 'przycisk': 'Dodaj'})
 
     else:
@@ -49,53 +91,40 @@ def add(request):
 @login_required
 def edit(request,id_obrazka:int):
     obrazek = get_object_or_404(Obrazek,pk=id_obrazka)
+    old_path = obrazek.obrazek_path
     if request.user == obrazek.autor or request.user.is_superuser:
 
         if request.method == 'POST':
             form = Add_obrazek(request.POST, instance=obrazek)  # wprowadza istniejace dane
 
             if form.is_valid():
-                obrazek = form.save(commit=False)
-                obrazek.data_publikacji = timezone.now()
-                obrazek.save()
-                return redirect('detail', id_obrazka=obrazek.id)
+                link_ok = link_check(obrazek.obrazek_path)
+                if link_ok[0]:
+
+                    obrazek = form.save(commit=False)
+                    obrazek.data_publikacji = timezone.now()
+                    obrazek.save()
+                    if obrazek.obrazek_path != old_path:
+                        obrazek.kometarz_set.all().delete()
+                        obrazek.oceny_set.all().delete()
+
+                    return redirect('detail', id_obrazka=obrazek.id)
+                else:
+                    messages.error(request, link_ok[1])
+                    return redirect('edit',id_obrazka = obrazek.id)
+
         else:
             form =  Add_obrazek(instance=obrazek )
+
         return render(request, 'widok/form.html', {'form': form, 'przycisk': 'edytuj post','obrazek': obrazek })
+
     else:
         messages.error(request, "Nie masz uprawnień do tej operacji")
         return redirect('detail', id_obrazka=obrazek.id)
 
-# Usuwanie
-
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Obrazek
-    success_url = '/'
-
-    def test_func(self):
-        obrazek = self.get_object()
-        if self.request.user == obrazek.autor or self.request.user.is_superuser:
-            return True
-        return False
-
-# @login_required
-# def remove(request,id_obrazka:int):
-#     obrazek = get_object_or_404(Obrazek, pk=id_obrazka)
-#     if request.user == obrazek.autor or request.user.is_superuser:
-#         messages.info(request, f"Obrazek {obrazek.tytul} został poprawnie usunięty")
-#         obrazek.delete()
-#         return redirect('index')
-#
-#     else:
-#         messages.error(request, "Nie masz uprawnień do tej operacji")
-#
-#
-#     return redirect('detail',id_obrazka = obrazek.id)
 
 
 
-
-#szczeg�y
 def detail(request,id_obrazka:int):
     obrazek = get_object_or_404(Obrazek,pk=id_obrazka)
 
@@ -164,5 +193,8 @@ def detail(request,id_obrazka:int):
 
 
     return render(request,'widok/detail.html',obrazek_dane)
+
+
+
 
 

@@ -17,9 +17,9 @@
 
     <div class="row">
 
-        {%for obrazek in obrazki %}
+        {%for obrazek in object_list %}
         <figure class="col-md-6 col-lg-4">
-            <a href="{%url 'detail' id_obrazka=obrazek.id%}">
+            <a href="{%url 'detail' obrazek.id%}">
                 <div class="obr" >
                     <img src="{{obrazek.obrazek_path}}" style="height:100%; width:100%"  class="img-fluid zdjecie rounded ">
                 </div>
