@@ -8,7 +8,9 @@ from .models import Obrazek
 from .forms import Add_obrazek,Wybrana_ocena,Dodaj_kometarz
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView,DetailView, CreateView,UpdateView, DeleteView
+from django.views.generic import ListView, DeleteView
+
+
 
 
 
@@ -27,7 +29,7 @@ def link_check(path):
             return False, error
         w, h = img.size
         if w >= 640 and h >= 480:
-            return True, False
+            return True,False
         else:
             error = 'obraz ma za niską rozdzielczość (min 640x480px)'
 
@@ -37,13 +39,14 @@ def link_check(path):
 
     return False, error
 
-
+ilosc_obrazkow_na_strone = 9
 
 #główny widok
 class PhotoListView(ListView):
     model = Obrazek
     template_name = 'widok/home.html'
     ordering = ['-data_publikacji']
+    paginate_by = ilosc_obrazkow_na_strone
 
 
 # Usuwanie
@@ -105,7 +108,7 @@ def edit(request,id_obrazka:int):
                     obrazek.data_publikacji = timezone.now()
                     obrazek.save()
                     if obrazek.obrazek_path != old_path:
-                        obrazek.kometarz_set.all().delete()
+
                         obrazek.oceny_set.all().delete()
 
                     return redirect('detail', id_obrazka=obrazek.id)
@@ -181,6 +184,12 @@ def detail(request,id_obrazka:int):
 
     czy_ocenil = obrazek.czy_ocenil(request.user.id) if request.user.id else False
 
+    #cofinij do
+
+
+
+
+
     obrazek_dane = {
                    'obrazek':obrazek,
                    'formocena': form_ocena,
@@ -188,7 +197,8 @@ def detail(request,id_obrazka:int):
                    'kometarze':kometarze,
                    'gwiazdki':gwiazdki,
                    'czy_ocenil': czy_ocenil,
-                    'podglad_gwiazdek': [5,4,3,2,1]
+                    'podglad_gwiazdek': [5,4,3,2,1],
+
                    }
 
 

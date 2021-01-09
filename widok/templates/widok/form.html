@@ -24,17 +24,19 @@
 
             <div  class="jumbotron">
                 <div class="row">
-                    <h1 class="display-5 col-12">Dodaj obraz do galerii</h1>
+
+                    <h1 class="display-5 col-12">{%if obrazek.id%}Edytuj obraz{%else%}Dodaj obraz do galerii{%endif%}</h1>
+
+
                 </div>
                 <hr class="my-4">
                 <!--    form-->
                 <div class="row">
 
-                    <form class="col-12"
-
-                          method="post">
+                    <form class="col-12 row" method="post">
 
                         {% csrf_token %}
+                        <div class="col-md-8">
                         <div class="form-group">
                             <label for="id_obrazek_path">Ścieżka do obrazka</label>
                             {{form.obrazek_path}}
@@ -45,10 +47,21 @@
                             <label for="id_tytul">Tytuł</label>
                             {{form.tytul}}
                         </div>
+                         </div>
 
+                        <div class="col-md-4">
+
+                        <img  src="{%if obrazek.id%}{{obrazek.obrazek_path}}{%else%}https://static.thenounproject.com/png/558475-200.png{%endif%}" style="height:200px; " class=" rounded ">
+
+
+                        </div>
+
+                        <div class="col-12">
                         <button type="submit" class="btn btn-primary ">{{przycisk}}</button>
-
+                        </div>
                     </form>
+
+
 
                 </div>
 

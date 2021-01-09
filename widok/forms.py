@@ -6,12 +6,9 @@ class Add_obrazek(forms.ModelForm):
         model = Obrazek
         fields = ['obrazek_path','tytul']
         widgets ={
-            'obrazek_path':forms.TextInput(attrs={'class':'form-control col-md-8','placeholder':'https://...'}),
-            'tytul':forms.TextInput(attrs={'class':'col-12 col-md-5 col-lg-3 form-control'})
+            'obrazek_path':forms.TextInput(attrs={'class':'form-control col-md-12','placeholder':'https://...'}),
+            'tytul':forms.TextInput(attrs={'class':'col-12 col-md-7 col-lg-6 form-control'})
         }
-
-
-
 
 
 WARTOSCI_OCEN = [(str(x),'') for x in range(5,0,-1)]
