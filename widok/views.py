@@ -10,6 +10,8 @@ from .forms import Add_obrazek,Wybrana_ocena,Dodaj_kometarz
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DeleteView
 
+from django.contrib.auth.models import User
+
 
 
 
@@ -48,6 +50,19 @@ class PhotoListView(ListView):
     ordering = ['-data_publikacji']
     paginate_by = ilosc_obrazkow_na_strone
 
+#lista uzytkownika
+
+class UserPostView(ListView):
+    model = Obrazek
+    template_name = 'widok/home.html'
+
+
+    paginate_by = ilosc_obrazkow_na_strone
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username = self.kwargs.get('username'))
+        self.kwargs['img'] = user.profile.image.url
+        return  Obrazek.objects.filter(autor = user).order_by('-data_publikacji')
 
 # Usuwanie
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):

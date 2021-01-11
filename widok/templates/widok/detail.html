@@ -56,8 +56,10 @@
         <div class="card-body" id="ocena">
             <div class="row d-flex justify-content-between ">
                 <div class="col-12 col-md-6">
+                    <a class="nav-link" href="{%url 'user-posts' obrazek.autor %}">
                     <img class="rounded-circle" src="{{obrazek.autor.profile.image.url}}" width="32px" height='32px'>
                     {{obrazek.autor}}
+                    </a>
                 </div>
                 <div class="col-12 col-md-6 text-md-right ">
                     <small class="text-muted d-none d-md-block">Data publikacji: {{ obrazek.data_publikacji|date:"F d Y" }}</small>
@@ -194,10 +196,10 @@
                                             </a>
                                             <div class="media-body">
                                                 <span class="text-muted pull-right">
-                                                <strong class="text-primary">{{komentarz.autor}}</strong>
+                                                    <a class="" href="{%url 'user-posts' komentarz.autor %}"> <strong class="text-primary">{{komentarz.autor}}</strong></a>
                                                 </span>
                                                 <small class="text-muted">{{komentarz.data_publikacji}}</small>
-                                                <p>
+                                                <p class="ml-2">
                                                     {{komentarz.tresc}}
                                                 </p>
                                             </div>
@@ -219,17 +221,7 @@
     </div>
 </div>
 <!-- tymczasowe -->
-<script>
-    const back = document.querySelector('#back')
-    back.addEventListener('click',(e)=>{
-        let link = localStorage.getItem("poprzednia");
-
-        window.location.href = link;
-
-            
-    })
-
-</script>
+<script src="{%static 'detail.js'%}"></script>
 
 
 {%endblock%}

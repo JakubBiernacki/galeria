@@ -1,42 +1,43 @@
 {%extends 'base.html'%}
 {%block content%}
-
+{% load static %}
 
 <div class="container">
     {%if messages%}
-       {%for message in messages%}
-          <div class="alert {%if message.tags == 'error'%}alert-danger {%else%}alert-{{message.tags}}{%endif%} alert-dismissible" role="alert">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-             {{message}}
-          </div>
-       {%endfor%}
+    {%for message in messages%}
+    <div class="alert {%if message.tags == 'error'%}alert-danger {%else%}alert-{{message.tags}}{%endif%} alert-dismissible"
+         role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{message}}
+    </div>
+    {%endfor%}
     {%endif%}
 
 
-        <a class="btn  btn-lg" href=" {%if obrazek.id%} {%url 'detail' obrazek.id%} {%else%} / {%endif%}">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
-                 xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-            </svg>
-        </a>
-        <div>
+    <a class="btn  btn-lg" href=" {%if obrazek.id%} {%url 'detail' obrazek.id%} {%else%} / {%endif%}">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
+             xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg>
+    </a>
+    <div>
 
-            <div  class="jumbotron">
-                <div class="row">
+        <div class="jumbotron">
+            <div class="row">
 
-                    <h1 class="display-5 col-12">{%if obrazek.id%}Edytuj obraz{%else%}Dodaj obraz do galerii{%endif%}</h1>
+                <h1 class="display-5 col-12">{%if obrazek.id%}Edytuj obraz{%else%}Dodaj obraz do galerii{%endif%}</h1>
 
 
-                </div>
-                <hr class="my-4">
-                <!--    form-->
-                <div class="row">
+            </div>
+            <hr class="my-4">
+            <!--    form-->
+            <div class="row">
 
-                    <form class="col-12 row" method="post">
+                <form class="col-12 row" method="post">
 
-                        {% csrf_token %}
-                        <div class="col-md-8">
+                    {% csrf_token %}
+                    <div class="col-md-8">
                         <div class="form-group">
                             <label for="id_obrazek_path">Ścieżka do obrazka</label>
                             {{form.obrazek_path}}
@@ -47,31 +48,31 @@
                             <label for="id_tytul">Tytuł</label>
                             {{form.tytul}}
                         </div>
-                         </div>
+                    </div>
 
-                        <div class="col-md-4">
+                    <div id="podglad" class="col-md-4">
+                        <!--#-->
+                        <img src="{%if obrazek.id%}{{obrazek.obrazek_path}}{%else%}https://static.thenounproject.com/png/558475-200.png{%endif%}"
+                             style="height:200px; " class=" rounded ">
 
-                        <img  src="{%if obrazek.id%}{{obrazek.obrazek_path}}{%else%}https://static.thenounproject.com/png/558475-200.png{%endif%}" style="height:200px; " class=" rounded ">
 
+                    </div>
 
-                        </div>
-
-                        <div class="col-12">
+                    <div class="col-12">
                         <button type="submit" class="btn btn-primary ">{{przycisk}}</button>
-                        </div>
-                    </form>
+                    </div>
+                </form>
 
-
-
-                </div>
 
             </div>
 
-
         </div>
 
-</div>
 
+    </div>
+
+</div>
+<script src="{%static 'form.js'%}"></script>
 
 {%endblock%}
 

@@ -4,27 +4,27 @@
 {%block content%}
 <div class="container">
 
-        <div class="content-section">
-            <form method="post">{%csrf_token%}
-                <fieldset class="form-group col-md-7">
-                    <legend class="boredr-bottom mb-4">Stwórz nowe konto</legend>
-                    {{form|crispy}}
-                </fieldset>
+    <div class="content-section">
+        <form method="post">{%csrf_token%}
+            <fieldset class="form-group col-md-7">
+                <legend class="boredr-bottom mb-4">Stwórz nowe konto</legend>
+                {{form|crispy}}
+            </fieldset>
 
-                <div class="form-group col">
-                    <button class="btn btn-outline-primary" type="submit">Utwórz konto</button>
-                </div>
-            </form>
-
-            <div class="border-top pt-3">
-                <small class="text-muted">
-                    Masz już konto?
-                    <a href="{%url 'login'%}" class="ml-2">Zaloguj się</a>
-                </small>
+            <div class="form-group col">
+                <button class="btn btn-outline-primary" type="submit">Utwórz konto</button>
             </div>
+        </form>
 
-
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Masz już konto?
+                <a href="{%url 'login'%}" class="ml-2">Zaloguj się</a>
+            </small>
         </div>
+
+
+    </div>
 
 </div>
 {%endblock content%}

@@ -2,27 +2,28 @@
 
 {% block content %}
 
-    <div class="container">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Usuwanie obrazka</legend>
-                <div class="row">
-                    <div class="col-6">
-                        <h2 >Jesteś pewien że chcesz usunąć zdjecie "{{object.tytul}}" wraz ze wszystkimi ocenami i komentarzami?</h2>
-                    </div>
-                    <div class="col-6">
-                        <img  src="{{object.obrazek_path}}" style="height:200px; " class=" rounded ">
-                    </div>
-
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Usuwanie obrazka</legend>
+            <div class="row">
+                <div class="col-6">
+                    <h2>Jesteś pewien że chcesz usunąć zdjecie "{{object.tytul}}" wraz ze wszystkimi ocenami i
+                        komentarzami?</h2>
+                </div>
+                <div class="col-6">
+                    <img src="{{object.obrazek_path}}" style="height:200px; " class=" rounded ">
                 </div>
 
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-danger" type="submit">Tak, usuń</button>
-                <a class="btn btn-outline-secondary" href="{%url 'detail' object.id%}">Anuluj</a>
             </div>
-        </form>
 
-    </div>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">Tak, usuń</button>
+            <a class="btn btn-outline-secondary" href="{%url 'detail' object.id%}">Anuluj</a>
+        </div>
+    </form>
+
+</div>
 {% endblock content %}
