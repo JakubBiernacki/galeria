@@ -7,11 +7,13 @@
         <div class="col-md-9">
 
             {%if messages%}
-            {%for message in messages%}
-            <div class="alert alert-{{message.tags}}">
-                {{message}}
-            </div>
-            {%endfor%}
+    {%for message in messages%}
+    <div class="alert {%if message.tags == 'error'%}alert-danger {%else%}alert-{{message.tags}}{%endif%} alert-dismissible"
+         role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{message}}
+    </div>
+    {%endfor%}
             {%endif%}
             <div class="content-section jumbotron pt-4 pb-5 mt-4">
                 <div class="media">

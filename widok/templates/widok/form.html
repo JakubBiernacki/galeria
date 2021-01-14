@@ -34,13 +34,22 @@
             <!--    form-->
             <div class="row">
 
-                <form class="col-12 row" method="post">
 
-                    {% csrf_token %}
+                <form class="col-12 row" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+
                     <div class="col-md-8">
                         <div class="form-group">
+                            {%if obrazek.obrazek_path or opcja == 'link'%}
                             <label for="id_obrazek_path">Ścieżka do obrazka</label>
+
                             {{form.obrazek_path}}
+                            <small class="text-muted">Link musi być bazpieczny oraz obrazek musi mieć nie mniej niż 640x480</small>
+                            {%else%}
+
+                            {{form.obrazek_file}}
+
+                            {%endif%}
 
                         </div>
 
@@ -50,11 +59,24 @@
                         </div>
                     </div>
 
-                    <div id="podglad" class="col-md-4">
-                        <!--#-->
-                        <img src="{%if obrazek.id%}{{obrazek.obrazek_path}}{%else%}https://static.thenounproject.com/png/558475-200.png{%endif%}"
-                             style="height:200px; " class=" rounded ">
+                    <div id="podglad" class="col-12 col-xl-4 pb-4">
 
+                        {%if not obrazek%}
+                        <div id="spin" class=" mt-5 d-flex align-items-center">
+                                  <strong>Podgląd obrazka...  </strong>
+                                  <div class="spinner-border ms-auto text-primary ml-3" role="status" aria-hidden="true"></div>
+                        </div>
+                        <img id="blah" style="max-height:200px; max-width:350px" class="rounded ">
+                        {%else%}
+
+                        <img id="blah" src="
+                        {%if obrazek.obrazek_path%}
+                        {{obrazek.obrazek_path}}
+                        {%else%}
+                        {{obrazek.obrazek_file.url}}
+                        {%endif%}
+                        " style="max-height:200px; max-width:350px" class="rounded ">
+                        {%endif%}
 
                     </div>
 
@@ -72,6 +94,8 @@
     </div>
 
 </div>
+
+
 <script src="{%static 'form.js'%}"></script>
 
 {%endblock%}

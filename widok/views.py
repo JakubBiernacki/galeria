@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .models import Obrazek
-from .forms import Add_obrazek,Wybrana_ocena,Dodaj_kometarz
+from .forms import Add_obrazek_link,Add_obrazek_file,Wybrana_ocena,Dodaj_kometarz
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DeleteView
@@ -80,28 +80,33 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 # Dodawanie obrazka
 @login_required
-def add(request):
+def add(request,opcja):
     if request.method == 'POST':
-        form = Add_obrazek(request.POST)
+
+        form = Add_obrazek_link(request.POST) if opcja=='link' else  Add_obrazek_file(request.POST,request.FILES)
 
         if form.is_valid():
             obrazek = form.save(commit=False)
 
-            link_ok = link_check(obrazek.obrazek_path)
+            link_ok = link_check(obrazek.obrazek_path) if opcja=='link' else [True]
 
             if link_ok[0]:
 
+
                 obrazek.data_publikacji = timezone.now()
                 obrazek.autor = request.user
+
+
+
                 obrazek.save()
                 return redirect("detail", id_obrazka=obrazek.pk)
             else:
                 messages.error(request, link_ok[1])
-                return render(request, 'widok/form.html', {'form': form, 'przycisk': 'Dodaj'})
+                return render(request, 'widok/form.html', {'form': form, 'przycisk': 'Dodaj','opcja':opcja})
 
     else:
-        form = Add_obrazek
-    return render(request, 'widok/form.html', {'form': form, 'przycisk': 'Dodaj'})
+        form = Add_obrazek_link if opcja=='link' else  Add_obrazek_file
+    return render(request, 'widok/form.html', {'form': form, 'przycisk': 'Dodaj','opcja':opcja})
 
 
 
@@ -110,18 +115,22 @@ def add(request):
 def edit(request,id_obrazka:int):
     obrazek = get_object_or_404(Obrazek,pk=id_obrazka)
     old_path = obrazek.obrazek_path
+
     if request.user == obrazek.autor or request.user.is_superuser:
 
         if request.method == 'POST':
-            form = Add_obrazek(request.POST, instance=obrazek)  # wprowadza istniejace dane
+
+            form = Add_obrazek_link(request.POST, instance=obrazek) if obrazek.obrazek_path else Add_obrazek_file(request.POST,request.FILES, instance=obrazek)  # wprowadza istniejace dane
 
             if form.is_valid():
-                link_ok = link_check(obrazek.obrazek_path)
+                link_ok = link_check(obrazek.obrazek_path) if obrazek.obrazek_path else [True]
                 if link_ok[0]:
 
                     obrazek = form.save(commit=False)
+
                     obrazek.data_publikacji = timezone.now()
                     obrazek.save()
+
                     if obrazek.obrazek_path != old_path:
 
                         obrazek.oceny_set.all().delete()
@@ -132,7 +141,7 @@ def edit(request,id_obrazka:int):
                     return redirect('edit',id_obrazka = obrazek.id)
 
         else:
-            form =  Add_obrazek(instance=obrazek )
+            form =  Add_obrazek_link(instance=obrazek) if obrazek.obrazek_path else Add_obrazek_file(instance=obrazek)
 
         return render(request, 'widok/form.html', {'form': form, 'przycisk': 'edytuj post','obrazek': obrazek })
 

@@ -31,7 +31,13 @@
         <figure class="col-md-6 col-lg-4">
             <a href="{%url 'detail' id_obrazka=obrazek.id%}">
                 <div class="obr">
-                    <img src="{{obrazek.obrazek_path}}" style="height:100%; width:100%"
+                    <img
+                            {%if obrazek.obrazek_path%}
+                            src="{{obrazek.obrazek_path}}"
+                            {%else%}
+                            src="{{obrazek.obrazek_file.url}}"
+                            {%endif%}
+                            style="height:100%; width:100%"
                          class="img-fluid zdjecie rounded ">
                 </div>
             </a>

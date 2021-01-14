@@ -3,6 +3,11 @@ a.disabled {
   pointer-events: none;
   cursor: default;
 }
+.opcje{
+display:flex;
+justify-content: space-around;
+}
+
 
 
 .zdjecie{

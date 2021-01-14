@@ -13,7 +13,14 @@
                         komentarzami?</h2>
                 </div>
                 <div class="col-6">
-                    <img src="{{object.obrazek_path}}" style="height:200px; " class=" rounded ">
+                    <img
+                            {%if object.obrazek_path%}
+                            src="{{object.obrazek_path}}"
+                            {%else%}
+                            src="{{object.obrazek_file.url}}"
+                            {%endif%}
+
+                            style="height:200px; " class=" rounded ">
                 </div>
 
             </div>
