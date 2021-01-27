@@ -12,8 +12,10 @@ from PIL import Image, ImageOps
 
 
 class Obrazek(models.Model):
-    obrazek_path = models.CharField(max_length=200,null=True)
-    obrazek_file = models.ImageField(upload_to='img_file',null=True)
+    obrazek_path = models.CharField(max_length=200,null=True,default=None)
+    obrazek_file = models.ImageField(upload_to='img_file',null=True,default=None)
+
+
 
 
     tytul = models.CharField(max_length=200)
@@ -35,10 +37,11 @@ class Obrazek(models.Model):
         return self.oceny_set.get(autor=user).ocena
 
 
-# @receiver(post_save,sender=Obrazek)
-# def save_obrazek(sender,instance,**kwargs):
-#
-#     instance.save()
+
+
+
+
+
 
 
 @receiver(post_delete, sender=Obrazek)

@@ -88,6 +88,7 @@ def add(request,opcja):
         if form.is_valid():
             obrazek = form.save(commit=False)
 
+
             link_ok = link_check(obrazek.obrazek_path) if opcja=='link' else [True]
 
             if link_ok[0]:
@@ -99,6 +100,8 @@ def add(request,opcja):
 
 
                 obrazek.save()
+
+
                 return redirect("detail", id_obrazka=obrazek.pk)
             else:
                 messages.error(request, link_ok[1])
@@ -207,11 +210,6 @@ def detail(request,id_obrazka:int):
         gwiazdki=[0]*5
 
     czy_ocenil = obrazek.czy_ocenil(request.user.id) if request.user.id else False
-
-    #cofinij do
-
-
-
 
 
     obrazek_dane = {

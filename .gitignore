@@ -10,3 +10,10 @@ config.json
 media/profile_img/
 users/__pycache__/
 
+/users/migrations/0002_auto_20210104_0612.py
+/widok/migrations/0003_auto_20210104_0612.py
+/widok/migrations/0004_auto_20210114_1559.py
+/widok/migrations/0005_auto_20210114_1604.py
+/widok/migrations/0006_auto_20210114_1605.py
+/widok/migrations/0007_auto_20210115_2207.py
+/media/img_file/sdsd.jpg
