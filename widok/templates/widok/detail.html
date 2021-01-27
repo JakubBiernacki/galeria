@@ -155,14 +155,14 @@
     </div>
     <!--    sekcja kometarzy-->
     <div class="row d-flex justify-content-center">
-        <p class="display-3 display-md-1 alert alert-light" id="komentarz">Sekcja komentarzy</p>
+        <p class="h1  alert alert-light" id="komentarz">Sekcja komentarzy</p>
     </div>
     <!--    WYSWIETLANIE-->
     <div class="d-flex  justify-content-center">
         <div class="jumbotron pt-5 pb-5 col-12">
             <div class="col-12">
                 <div class="row bootstrap snippets bootdeys">
-                    <div class="col-md-8 col-sm-12">
+                    <div class="col-md-8 col-12">
                         <div class="comment-wrapper">
                             <div class="panel panel-info">
                                 <div class="panel-heading h3">
@@ -192,9 +192,9 @@
                                     <div class="clearfix"></div>
                                     <hr>
                                     <!--                                        Sekcja kometarzy-->
-                                    <ul class="media-list">
+                                    <ul class="media-list pl-0"  >
                                         {%if not kometarze%}
-                                        <div class="display-4">Brak komentarzy</div>
+                                        <div class=" h2 pl-5">Brak komentarzy</div>
                                         {%else%}
                                         {%for komentarz in kometarze%}
                                         <li class="media">

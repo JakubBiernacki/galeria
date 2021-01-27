@@ -24,7 +24,7 @@
     {%endif%}
 
 
-    <div class="row pt-3">
+    <div class="row pt-3 allobr">
 
 
         {%for obrazek in object_list %}
@@ -41,12 +41,13 @@
                          class="img-fluid zdjecie rounded ">
                 </div>
             </a>
-
-            <div class="bottom-left ">&#11088;: {{obrazek.srednia_ocen}}<small
-                    class="text-muted ml-1">{{obrazek.count}}</small></div>
-            {{test}}
-            <div class="bottom-right">Komentarze: {{obrazek.kometarz_set.count}}</div>
-            <h3 class="text-center my-3 pb-2">{{obrazek.tytul}}</h3>
+            <div class="obr-bottom">
+                <div class="bottom-left ">&#11088;: {{obrazek.srednia_ocen}}<small
+                        class="text-muted ml-1">{{obrazek.count}}</small></div>
+                {{test}}
+                <div class="bottom-right">Komentarze: {{obrazek.kometarz_set.count}}</div>
+                <h3 class="text-center my-3 pb-2">{{obrazek.tytul}}</h3>
+            </div>
         </figure>
 
         {%endfor%}
@@ -74,7 +75,7 @@
             </a>
         </div>
 
-        <div class="btn-group mr-2 col-md-8 col-lg-6" role="group" aria-label="Second group">
+        <div class="btn-group mr-2 col-md-7 col-lg-6" role="group" aria-label="Second group">
             <!--previous-->
             <a class="btn btn-secondary {%if not page_obj.has_previous%}disabled" {%else%}"href="?page={{page_obj.previous_page_number}}{%endif%}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -139,6 +140,8 @@
 </footer>
 
 <script src="{%static 'home.js'%}"></script>
+
+<!--animacja-->
 
 
 {%endblock%}
