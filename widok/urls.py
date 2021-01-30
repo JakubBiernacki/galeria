@@ -5,6 +5,7 @@ from users import views as user_views
 
 urlpatterns = [
     path('',views.PhotoListView.as_view(),name='index'),
+
     path('obrazek/<int:pk>/delete/',views.PostDeleteView.as_view(),name='remove'),
     path('user/<str:username>',views.UserPostView.as_view(),name='user-posts'),
 

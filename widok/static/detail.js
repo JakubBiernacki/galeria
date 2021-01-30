@@ -3,3 +3,4 @@ const back = document.querySelector('#back')
         let link = localStorage.getItem("poprzednia") || "/";
         window.location.href = link;
     })
+

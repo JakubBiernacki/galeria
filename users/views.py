@@ -3,12 +3,15 @@ from django.shortcuts import render,redirect
 #wiadomość
 from django.contrib import messages
 #formularze
-from .form import Register_Form,UserUpdateForm,ProfileUpdateForm
+from .form import Register_Form,UserUpdateForm,ProfileUpdateForm,ContactForm
 #logowanie
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import os
+
+from django.core.mail import send_mail
+from django.conf import settings
 
 def rejestracja(request):
 
@@ -79,3 +82,27 @@ def profile(request):
 
 
     return render(request,'users/profile.html',context)
+
+@login_required
+def contact(request):
+    if request.method == 'POST':
+
+        form = ContactForm(request.POST)
+        if form.is_valid():
+
+            subject = form.cleaned_data['tytul']
+            from_email = form.cleaned_data['email']
+            message = form.cleaned_data['tresc']
+            try:
+                send_mail(f"User: {request.user.username} Tytuł: "+subject, message, from_email, [getattr(settings,"EMAIL_HOST_USER")])
+                messages.success(request, "Wiadomość została wysłana")
+                if form.cleaned_data['checkbox']:
+                    send_mail("Tytuł: " + subject, 'To jest wysłana przez ciebie wiadomość przez strone https://galeria.jbiernacki.pl/ : \n\n'+message, 'Galeria',[from_email])
+                return redirect('index')
+            except:
+                messages.error(request, "Wiadomość nie zostałą wysłana!")
+
+    form = ContactForm()
+
+    form.initial['email'] = request.user.email if request.user.email else ''
+    return render(request, 'users/contact.html', {'form': form})

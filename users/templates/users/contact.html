@@ -1,0 +1,75 @@
+{%extends 'base.html'%}
+{%block content%}
+{%load crispy_forms_tags%}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<div class="container">
+    {%if messages%}
+    {%for message in messages%}
+    <div class="alert {%if message.tags == 'error'%}alert-danger {%else%}alert-{{message.tags}}{%endif%} alert-dismissible"
+         role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+
+
+    <!--    <form method="post">-->
+
+
+    <!--        <div class="form-group ">-->
+    <!--                <button class="btn btn-outline-primary" type="submit">Wyślij wiadomość</button>-->
+    <!--            </div>-->
+    <!--    </form>-->
+
+
+    <div class="card mt-5">
+        <div class="card-header bg-primary text-white"><i class="fa fa-envelope"></i> Napisz do mnie
+        </div>
+        <div class="card-body">
+            <form method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Email</label>
+
+
+                    {{form.email}}
+                    <small id="emailHelp" class="form-text text-muted">Proszę podać adres email po którym moge się z
+                        tobą skontaktować</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Tytuł</label>
+                    {{form.tytul}}
+
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Wiadomość</label>
+                    {{form.tresc}}
+
+                </div>
+
+
+                <div class="form-group">
+
+                    {{form.checkbox}} wyślij kopie do mnie
+
+                </div>
+
+
+
+                <div class="mx-auto">
+                    <button type="submit" class="btn btn-primary text-right">Wyślij</button>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{%endblock%}
+
+

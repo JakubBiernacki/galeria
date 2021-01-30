@@ -1,5 +1,6 @@
 from django import forms
 from .models import Obrazek,Oceny,Kometarz
+from django.contrib.auth.models import User
 
 class Add_obrazek_link(forms.ModelForm):
 
@@ -40,6 +41,12 @@ class Dodaj_kometarz(forms.ModelForm):
 
             'tresc': forms.Textarea(attrs={'class': 'col-11 form-control','rows':'3','placeholder':'twój komentarz...'})
         }
+
+#contact form
+
+
+
+
 
 
 

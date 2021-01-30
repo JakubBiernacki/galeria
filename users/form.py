@@ -33,3 +33,8 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields=['image']
 
+class ContactForm(forms.Form):
+    email = forms.EmailField(required=True,widget=forms.EmailInput(attrs={'class':'form-control','placeholder':"Wpisz swój adres email",'id':"email", 'aria-describedby':"emailHelp"}))
+    tytul = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control','id':"name", 'aria-describedby':"emailHelp",'placeholder':"Wpisz tytuł"}))
+    tresc = forms.CharField(required=True,widget=forms.Textarea(attrs={'class':'form-control','id':"message", 'rows':"6"}))
+    checkbox = forms.BooleanField(required=False)

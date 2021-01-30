@@ -12,6 +12,8 @@ from django.views.generic import ListView, DeleteView
 
 from django.contrib.auth.models import User
 
+#wysyłanie maila
+
 
 
 
@@ -225,6 +227,8 @@ def detail(request,id_obrazka:int):
 
 
     return render(request,'widok/detail.html',obrazek_dane)
+
+#kontakt
 
 
 

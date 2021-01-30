@@ -1,6 +1,8 @@
 {%extends 'base.html'%}
 {%block content%}
 {% load static %}
+
+
 <link rel="stylesheet" href="{%static 'ikony.css'%}">
 <link rel="stylesheet" href="{%static 'star.css'%}">
 <div class="container">
@@ -127,7 +129,7 @@
 
                     <button type="submit" class="  mb-1 ml-1 btn btn-primary " disabled>ocenione</button>
                     {%else%}
-                    <form action="#" method="post" >
+                    <form method="post" >
                     {% csrf_token %}
                     <div class="row h5  pt-4">
                         <div class="col">
@@ -171,7 +173,7 @@
                                 <hr>
                                 <div class="panel-body">
                                     {%if user.is_authenticated%}
-                                    <form action="{{request.path}}#komentarz" method="post">
+                                    <form method="post">
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <label>Autor:</label>
