@@ -30,6 +30,10 @@ from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',include('widok.urls')),
+    path('api/',include('api.urls')),
+
+
     path('favicon.ico', RedirectView.as_view(url='/media/favicon.ico')),
     path("register/",user_views.rejestracja,name='register'),
     path("login/",auth_views.LoginView.as_view(template_name='users/login.html'),name='login'),
@@ -55,7 +59,7 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
          name='password_reset_complete'),
 
-    path('',include('widok.urls'))
+
 ]
 
 if settings.DEBUG:

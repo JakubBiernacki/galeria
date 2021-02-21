@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     #My apps
     'widok.apps.WidokConfig',
     'users.apps.UsersConfig',
-    'crispy_forms'
+    'api.apps.ApiConfig',
+    'crispy_forms',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

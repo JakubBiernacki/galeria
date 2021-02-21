@@ -15,9 +15,6 @@ class Obrazek(models.Model):
     obrazek_path = models.CharField(max_length=200,null=True,default=None)
     obrazek_file = models.ImageField(upload_to='img_file',null=True,default=None)
 
-
-
-
     tytul = models.CharField(max_length=200)
     data_publikacji = models.DateTimeField(default=timezone.now)
     autor = models.ForeignKey(User,on_delete= models.CASCADE)
