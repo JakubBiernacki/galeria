@@ -4,4 +4,4 @@ const back = document.querySelector('#back')
         window.location.href = link;
     })
 
-console.log(id)
+

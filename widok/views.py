@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .models import Obrazek
-from .forms import Add_obrazek_link,Add_obrazek_file,Wybrana_ocena,Dodaj_kometarz
+from .forms import Add_obrazek_link,Add_obrazek_file
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DeleteView
@@ -159,71 +159,13 @@ def edit(request,id_obrazka:int):
 
 def detail(request,id_obrazka:int):
     obrazek = get_object_or_404(Obrazek,pk=id_obrazka)
-
-
-    if request.method == 'POST':
-
-        form_ocena = Wybrana_ocena(request.POST)
-        form_kom = Dodaj_kometarz(request.POST)
-        #ocena
-        if form_ocena.is_valid():
-            if obrazek.czy_ocenil(request.user.id):
-                messages.error(request, "Prosze nie hakować ")
-            else:
-                ocena = form_ocena.save(commit=False)
-
-                ocena.autor = request.user
-                ocena.obrazek = obrazek
-
-                ocena.save()
-                messages.info(request, "Dodano ocene")
-
-
-            return redirect('detail', id_obrazka=obrazek.id)
-
-        #komentarz
-        elif form_kom.is_valid():
-            kometarz = form_kom.save(commit=False)
-
-            kometarz.autor = request.user
-            kometarz.obrazek_id = id_obrazka
-
-            kometarz.save()
-
-            messages.info(request, "Dodano komentarz")
-            return redirect('detail', id_obrazka=obrazek.pk)
-
-    else:
-        form_ocena = Wybrana_ocena
-        form_kom = Dodaj_kometarz
-
-
-
-    kometarze = obrazek.kometarz_set.all().order_by('-data_publikacji')
-
-    #ile gwiazdek narysować
-    srednia = obrazek.srednia_ocen() if obrazek.oceny_count() else False
-    if srednia:
-        pelne = int(srednia)
-        gwiazdki = [2]*pelne +[1] if srednia-pelne else [2]*pelne
-        gwiazdki+= [0]*(5 - len(gwiazdki))
-
-    else:
-        gwiazdki=[0]*5
-
     czy_ocenil = obrazek.czy_ocenil(request.user.id) if request.user.id else False
 
-
     obrazek_dane = {
-                   'obrazek':obrazek,
-                   'formocena': form_ocena,
-                   'formkom':form_kom,
-                   'kometarze':kometarze,
-                   'gwiazdki':gwiazdki,
-                   'czy_ocenil': czy_ocenil,
-                    'podglad_gwiazdek': [5,4,3,2,1],
-
-                   }
+        'obrazek':obrazek,
+        'czy_ocenil': czy_ocenil,
+        'podglad_gwiazdek': [5,4,3,2,1],
+        }
 
 
     return render(request,'widok/detail.html',obrazek_dane)

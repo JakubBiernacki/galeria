@@ -1,5 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from widok.models import Oceny,Kometarz,Obrazek
+from users.models import User,Profile
+
 from .serializers import *
 
 from rest_framework import viewsets
@@ -45,3 +47,11 @@ class OcenyObrazkaViewSet(viewsets.ViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserProfileViewSet(viewsets.ViewSet):
+    serializer_class = UserProfileSerializer
+
+    def retrieve(self, request, pk=None):
+        queryset = User.objects.get(id=pk)
+        serializer = UserProfileSerializer(queryset)
+        return Response(serializer.data)

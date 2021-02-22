@@ -3,36 +3,41 @@
 {% load static %}
 
 
-<link rel="stylesheet" href="{%static 'ikony.css'%}">
-<link rel="stylesheet" href="{%static 'star.css'%}">
+<link rel="stylesheet" href="{%static 'css/ikony.css'%}">
+<link rel="stylesheet" href="{%static 'css/star.css'%}">
 <div class="container">
+
+
     <!--    ikony-->
     <div class="row d-flex justify-content-between">
-        <a id="back" class="btn  btn-lg" >
+        <a id="back" class="btn  btn-lg">
             <svg id="cofnij" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
+                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
-                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
             </svg>
+
         </a>
         <div>
             {% if user == obrazek.autor or user.is_superuser%}
             <!--        edycja-->
-            <a class="btn  btn-lg" href="{%url 'edit' obrazek.id%}">
+            <a class="btn edit btn-lg" href="{%url 'edit' obrazek.id%}">
                 <svg id="edit" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square"
-                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd"
-                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                 </svg>
             </a>
             <!--        usuwanie-->
-            <a class="btn  btn-lg" href="{%url 'remove' obrazek.id%}">
+            <a class="btn bin btn-lg" href="{%url 'remove' obrazek.id%}">
+
                 <svg id="kosz" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg">
+                     xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
-                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                          d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
                 </svg>
+
             </a>
             {%endif%}
         </div>
@@ -40,7 +45,8 @@
     <p>
         {%if messages%}
         {%for message in messages%}
-    <div class="alert {%if message.tags == 'error'%}alert-danger {%else%}alert-{{message.tags}}{%endif%} alert-dismissible" role="alert">
+    <div class="alert {%if message.tags == 'error'%}alert-danger {%else%}alert-{{message.tags}}{%endif%} alert-dismissible"
+         role="alert">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         {{message}}
     </div>
@@ -48,27 +54,30 @@
     {%endif%}
     </p>
 
+
     <div class="row text-right d-md-none ">
         <small class="text-muted col-12">Data publikacji: {{ obrazek.data_publikacji|date:"F d Y" }}</small>
     </div>
 
     <!--    zdjecie-->
-    <div class="card" >
+    <div class="card">
         <img
 
                 {%if obrazek.obrazek_path%}
-                            src="{{obrazek.obrazek_path}}"
-                            {%else%}
-                            src="{{obrazek.obrazek_file.url}}"
-                            {%endif%}
+                src="{{obrazek.obrazek_path}}"
+                {%else%}
+                src="{{obrazek.obrazek_file.url}}"
+                {%endif%}
 
                 min-width="1024px" min-height="768px" class="card-img-top">
+
         <div class="card-body" id="ocena">
             <div class="row d-flex justify-content-between ">
                 <div class="col-12 col-md-6">
                     <a style="text-decoration:none;" href="{%url 'user-posts' obrazek.autor %}">
-                    <img class="rounded-circle" src="{{obrazek.autor.profile.image.url}}" width="32px" height='32px'>
-                    {{obrazek.autor}}
+                        <img class="rounded-circle" src="{{obrazek.autor.profile.image.url}}" width="32px"
+                             height='32px'>
+                        {{obrazek.autor}}
                     </a>
                 </div>
                 <div class="col-12 col-md-6 text-md-right ">
@@ -77,32 +86,14 @@
             </div>
             <div class="row p  justify-content-between">
                 <div class="col-12 col-md-6 h1">Tytuł: {{obrazek.tytul}}</div>
-                <div class="col-12 col-lg-6 text-lg-right ">
-                    {%for w in gwiazdki%}
-                    {%if w == 2%}
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="h1 bi bi-star-fill"
-                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    {%elif w == 1%}
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="h1 bi bi-star-half"
-                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M5.354 5.119L7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.519.519 0 0 1-.146.05c-.341.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.171-.403.59.59 0 0 1 .084-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027c.08 0 .16.018.232.056l3.686 1.894-.694-3.957a.564.564 0 0 1 .163-.505l2.906-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.002 2.223 8 2.226v9.8z"/>
-                    </svg>
-                    {%elif w == 0%}
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="h1 bi bi-star"
-                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                    </svg>
-                    {%endif%}
-                    {%endfor%}
-                    <span class="font-weight-light h4">
-                    {%if obrazek.oceny_count%}
-                    {{obrazek.srednia_ocen}}
-                    {%endif%}
-                    <small class=' text-muted'>{{obrazek.oceny_count}}</small>
+                <div class="col-12 col-lg-6 text-lg-right podglad_ocen">
+                    <!--                    średnia gwiazdek w podglądzie-->
+
+
+                    <span class="font-weight-light  h4">
+<!--                        Obrazek srednia ocen-->
+
+                        <!--                    <small class='count_ocen text-muted'> &lt;!&ndash;ilosc ocen&ndash;&gt;</small>-->
 
 
 
@@ -110,46 +101,57 @@
                 </div>
             </div>
             <!--                formularz oceny-->
-            <div name="star" >
+            <div name="star">
                 {%if user.is_authenticated %}
-                    {%if czy_ocenil%}
-
-                    <div class="row h5  pt-4">
-                        <div class="col">
-                            <div class="rating ">
-                                {%for i in podglad_gwiazdek%}
-                                <input type="radio"
-                                       {%if i == czy_ocenil %} checked {%endif%}><label class="disabled"></label>
-                                {%endfor%}
-                            </div>
+                {%if czy_ocenil%}
+                <div class="row h5  pt-4">
+                    <div class="col">
+                        <div class="rating ">
+                            {%for i in podglad_gwiazdek%}
+                            <input type="radio"
+                                   {%if i == czy_ocenil %} checked {%endif%}><label class="disabled"></label>
+                            {%endfor%}
                         </div>
                     </div>
+                </div>
+
+                <button type="submit" class="  mb-1 ml-1 btn btn-primary " disabled>ocenione</button>
+                {%else%}
+                <!--Onecianie-->
 
 
+                <div class="row h5  pt-4">
+                    <div class="col">
+                        <div class="rating ">
 
-                    <button type="submit" class="  mb-1 ml-1 btn btn-primary " disabled>ocenione</button>
-                    {%else%}
-                    <form method="post" >
-                    {% csrf_token %}
-                    <div class="row h5  pt-4">
-                        <div class="col">
-                            <div class="rating ">
-                                {%for gwiazdka in formocena.ocena%}
-                                {{ gwiazdka.tag }}
-                                <label for="{{ gwiazdka.id_for_label }}">{{ forloop.counter }} stars</label>
-                                {% endfor %}
-                            </div>
+                            <input type="radio" name="ocena" value="5" id="id_ocena_0">
+                            <label for="id_ocena_0">1 stars</label>
+
+                            <input type="radio" name="ocena" value="4" id="id_ocena_1">
+                            <label for="id_ocena_1">2 stars</label>
+
+                            <input type="radio" name="ocena" value="3" id="id_ocena_2">
+                            <label for="id_ocena_2">3 stars</label>
+
+                            <input type="radio" name="ocena" value="2" id="id_ocena_3">
+                            <label for="id_ocena_3">4 stars</label>
+
+                            <input type="radio" name="ocena" value="1" id="id_ocena_4">
+                            <label for="id_ocena_4">5 stars</label>
+
                         </div>
-                    </div>
 
-                    <button type="submit" class=" ml-1 btn btn-primary">Wyślij ocene</button>
-                    {%endif%}
-                </form>
+
+                    </div>
+                </div>
+
+                <button type="submit" class=" wyslij_ocene ml-1 btn btn-primary">Wyślij ocene</button>
+                {%endif%}
 
 
                 {%else%}
                 <div class="pt-4 pb-4">
-                <a href="{% url 'login' %}?next={{request.path}}"> Zaloguj się</a> aby dodać ocene
+                    <a href="{% url 'login' %}?next={{request.path}}"> Zaloguj się</a> aby dodać ocene
                 </div>
                 {%endif%}
             </div>
@@ -173,52 +175,38 @@
                                 <hr>
                                 <div class="panel-body">
                                     {%if user.is_authenticated%}
-                                    <form method="post">
+                                    
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <label>Autor:</label>
 
                                             <div class="h2">
-                                                <img class="rounded-circle" src="{{user.profile.image.url}}" width="32px" height='32px'>  {{user}}
+                                                <img class="rounded-circle" src="{{user.profile.image.url}}"
+                                                     width="32px" height='32px'> {{user}}
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Treść komentarza</label>
-                                            {{formkom.tresc}}
+                                            <textarea class="col-11 pole_kom form-control" rows="3"
+                                                      placeholder="twój komentarz..."></textarea>
                                         </div>
-                                        <button type="submit"  class="btn btn-primary">dodaj</button>
-                                    </form>
+                                        <button class="dodaj_kom btn btn-primary">dodaj</button>
+                                    
                                     {%else%}
-                                    <p class="mt-5 mb-5"><a href="{% url 'login' %}?next={{request.path}}#komentarz"> Zaloguj się</a> aby dodać komentarz</p>
+                                    <p class="mt-5 mb-5"><a href="{% url 'login' %}?next={{request.path}}#komentarz">
+                                        Zaloguj się</a> aby dodać komentarz</p>
                                     {%endif%}
                                     <div class="clearfix"></div>
                                     <hr>
                                     <!--                                        Sekcja kometarzy-->
-                                    <ul class="media-list pl-0"  >
-                                        {%if not kometarze%}
-                                        <div class=" h2 pl-5">Brak komentarzy</div>
-                                        {%else%}
-                                        {%for komentarz in kometarze%}
-                                        <li class="media">
-                                            <a class="pull-left">
-                                            <img src="{{komentarz.autor.profile.image.url}}"
-                                                width="100px" height="100px" alt="" class="rounded-circle">
-                                            </a>
-                                            <div class="media-body">
-                                                <span class="text-muted pull-right">
-                                                    <a class="" href="{%url 'user-posts' komentarz.autor %}"> <strong class="text-primary">{{komentarz.autor}}</strong></a>
-                                                </span>
-                                                <small class="text-muted">{{komentarz.data_publikacji}}</small>
-                                                <p class="ml-2">
-                                                    {{komentarz.tresc}}
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <p></p>
-                                        {%endfor%}
+                                    <ul class="media-list pl-0">
 
 
-                                      {%endif%}
+
+                                        
+
+
+
 
                                     </ul>
                                 </div>
@@ -233,9 +221,30 @@
 <!-- tymczasowe -->
 
 <script>
-    const id = {{obrazek.id}}
+    const obrazek_id = {{obrazek.id}}
+    const user_id = {{user.id}}
+
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+    }
+
 </script>
-<script src="{%static 'detail.js'%}"></script>
+
+<script src="{%static 'js/detail.js'%}"></script>
+<script src="{%static 'js/detail_gwiazdki.js'%}"></script>
+<script src="{%static 'js/detail_kometarze.js'%}"></script>
 
 
 {%endblock%}
