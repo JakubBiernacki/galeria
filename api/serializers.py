@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from widok.models import Oceny,Kometarz,Obrazek
-from users.models import User,Profile
+from users.models import User
 
 
 class ObrazekSerializer(serializers.ModelSerializer):
