@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d16ae0e1-0526-46b7-b106-c22d286ac179" name="Default Changelist" comment="Dodanie rejestracji,logowania,wylogowywania,&#10;wstepne skalowanie obrazków" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="ProjectId" id="1kjYShOJnMrszBdKOtcd4O6v3Ij" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="galeria" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="galeria" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Nauka-Programowanie\PROGRAMOWANIE\Django\Projekty\galeria\widok\static\js" />
+      <recent name="D:\Nauka-Programowanie\PROGRAMOWANIE\Django\Projekty\galeria\widok\static\css" />
+      <recent name="D:\Nauka-Programowanie\PROGRAMOWANIE\Django\Projekty\galeria\api" />
+      <recent name="D:\Nauka-Programowanie\PROGRAMOWANIE\Django\Projekty\galeria\users\templates\users" />
+      <recent name="D:\Nauka-Programowanie\PYTHON\PYTHON-szkolenia\Django\galeria\widok\templates" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.settings">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="galeria" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="settings" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="galeria" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/galeria" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/galeria/settings.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.settings" />
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d16ae0e1-0526-46b7-b106-c22d286ac179" name="Default Changelist" comment="" />
+      <created>1606215468971</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606215468971</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Dodanie funkcji pisania kometarzy">
+      <created>1606421493953</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606421493953</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Dodanie wyświetlania komętarzy">
+      <created>1606482913048</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1606482913048</updated>
+    </task>
+    <task id="LOCAL-00003" summary="wprowadzenie oceny">
+      <created>1606504769500</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1606504769500</updated>
+    </task>
+    <task id="LOCAL-00004" summary="galeria1.0">
+      <created>1606516423423</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1606516423423</updated>
+    </task>
+    <task id="LOCAL-00005" summary="galeria1.0">
+      <created>1606516704325</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1606516704325</updated>
+    </task>
+    <task id="LOCAL-00006" summary="poprawki">
+      <created>1606691450276</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606691450276</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Code Formatting">
+      <created>1608594555533</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1608594555533</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Code Formatting">
+      <created>1608922552885</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1608922552885</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Code Formatting">
+      <created>1608923183714</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1608923183714</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Dodanie rejestracji,logowania,wylogowywania,&#10;wstepne skalowanie obrazków">
+      <created>1608945696588</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1608945696588</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Dodanie rejestracji,logowania,wylogowywania,&#10;wstepne skalowanie obrazków">
+      <created>1608945746545</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1608945746545</updated>
+    </task>
+    <task id="LOCAL-00012" summary="poprawki">
+      <created>1609105430066</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1609105430066</updated>
+    </task>
+    <task id="LOCAL-00013" summary="dalsze poprawki">
+      <created>1609125449551</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1609125449551</updated>
+    </task>
+    <task id="LOCAL-00014" summary="zamian modelu bazy, ocena i kom tylko dla zalogowanych, ograniczenie ilosci ocen">
+      <created>1609130193976</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1609130193977</updated>
+    </task>
+    <task id="LOCAL-00015" summary="first commit">
+      <created>1609183684971</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1609183684971</updated>
+    </task>
+    <task id="LOCAL-00016" summary="przekierowania i małe poprawki">
+      <created>1609196392689</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1609196392689</updated>
+    </task>
+    <task id="LOCAL-00017" summary="wstępny profil, zdjecie profilowe">
+      <created>1609201630288</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1609201630288</updated>
+    </task>
+    <task id="LOCAL-00018" summary="wstępny profil, zdjecie profilowe">
+      <created>1609201640962</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1609201640962</updated>
+    </task>
+    <task id="LOCAL-00019" summary="ikonki">
+      <created>1609205136533</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1609205136533</updated>
+    </task>
+    <task id="LOCAL-00020" summary="dodanie edycji profilu, poprawienie detali">
+      <created>1609303916500</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1609303916501</updated>
+    </task>
+    <task id="LOCAL-00021" summary="naprawa bledow">
+      <created>1609359619917</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1609359619917</updated>
+    </task>
+    <task id="LOCAL-00022" summary="naprawa bledow">
+      <created>1609393012793</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1609393012793</updated>
+    </task>
+    <task id="LOCAL-00023" summary="poprawki bezpieczeństwa">
+      <created>1609435076459</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1609435076459</updated>
+    </task>
+    <task id="LOCAL-00024" summary="zwiekszenie czytelnosci">
+      <created>1609636846961</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1609636846962</updated>
+    </task>
+    <task id="LOCAL-00025" summary="sprawdzanie poprawności linku">
+      <created>1609785741440</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1609785741440</updated>
+    </task>
+    <task id="LOCAL-00026" summary="ograniczenie obrazków na podstronie, mozliwoc przechodzenia miedzy stronami">
+      <created>1610220631491</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1610220631491</updated>
+    </task>
+    <task id="LOCAL-00027" summary="ograniczenie obrazków na podstronie, mozliwoc przechodzenia miedzy stronami">
+      <created>1610221277775</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1610221277775</updated>
+    </task>
+    <task id="LOCAL-00028" summary="ograniczenie obrazków na podstronie, mozliwoc przechodzenia miedzy stronami">
+      <created>1610222472509</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1610222472509</updated>
+    </task>
+    <task id="LOCAL-00029" summary="ograniczenie obrazków na podstronie, mozliwoc przechodzenia miedzy stronami">
+      <created>1610222652613</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1610222652613</updated>
+    </task>
+    <task id="LOCAL-00030" summary="ograniczenie obrazków na podstronie, mozliwoc przechodzenia miedzy stronami">
+      <created>1610222855753</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1610222855753</updated>
+    </task>
+    <task id="LOCAL-00031" summary="ograniczenie obrazków na podstronie, mozliwoc przechodzenia miedzy stronami">
+      <created>1610223246760</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1610223246760</updated>
+    </task>
+    <task id="LOCAL-00032" summary="ograniczenie obrazków na podstronie, mozliwoc przechodzenia miedzy stronami">
+      <created>1610224942351</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1610224942351</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Dodanie możliwaści resetu hasła">
+      <created>1610369303799</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1610369303799</updated>
+    </task>
+    <task id="LOCAL-00034" summary="dodawanie obrazu z lokalnych plików">
+      <created>1610649796517</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1610649796517</updated>
+    </task>
+    <task id="LOCAL-00035" summary="dodawanie obrazu z lokalnych plików">
+      <created>1610677395810</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1610677395810</updated>
+    </task>
+    <task id="LOCAL-00036" summary="mini poprawki">
+      <created>1611769320227</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1611769320227</updated>
+    </task>
+    <task id="LOCAL-00037" summary="mini poprawki">
+      <created>1611769354366</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1611769354366</updated>
+    </task>
+    <task id="LOCAL-00038" summary="proste animacje">
+      <created>1611777599596</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1611777599596</updated>
+    </task>
+    <task id="LOCAL-00039" summary="proste animacje">
+      <created>1611958929660</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1611958929660</updated>
+    </task>
+    <task id="LOCAL-00040" summary="formularz kontaktowy">
+      <created>1611965000512</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1611965000513</updated>
+    </task>
+    <task id="LOCAL-00041" summary="formularz kontaktowy">
+      <created>1612029439220</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1612029439220</updated>
+    </task>
+    <task id="LOCAL-00042" summary="tworzenie api">
+      <created>1613910332339</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1613910332339</updated>
+    </task>
+    <task id="LOCAL-00043" summary="dodawanie kom js (bug: zla kolejnosc)">
+      <created>1614027895129</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1614027895130</updated>
+    </task>
+    <task id="LOCAL-00044" summary="ajax kometarze">
+      <created>1614433706115</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1614433706115</updated>
+    </task>
+    <task id="LOCAL-00045" summary="ajax kometarze">
+      <created>1614527762834</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1614527762834</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Naprawa luki w api">
+      <created>1615634145628</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1615634145628</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="galeria1.0" />
+    <MESSAGE value="Code Formatting" />
+    <MESSAGE value="Dodanie rejestracji,logowania,wylogowywania,&#10;wstepne skalowanie obrazków" />
+    <MESSAGE value="poprawki" />
+    <MESSAGE value="dalsze poprawki" />
+    <MESSAGE value="zamian modelu bazy, ocena i kom tylko dla zalogowanych, ograniczenie ilosci ocen" />
+    <MESSAGE value="first commit" />
+    <MESSAGE value="przekierowania i małe poprawki" />
+    <MESSAGE value="wstępny profil, zdjecie profilowe" />
+    <MESSAGE value="ikonki" />
+    <MESSAGE value="dodanie edycji profilu, poprawienie detali" />
+    <MESSAGE value="naprawa bledow" />
+    <MESSAGE value="poprawki bezpieczeństwa" />
+    <MESSAGE value="zwiekszenie czytelnosci" />
+    <MESSAGE value="sprawdzanie poprawności linku" />
+    <MESSAGE value="ograniczenie obrazków na podstronie, mozliwoc przechodzenia miedzy stronami" />
+    <MESSAGE value="Dodanie możliwaści resetu hasła" />
+    <MESSAGE value="dodawanie obrazu z lokalnych plików" />
+    <MESSAGE value="mini poprawki" />
+    <MESSAGE value="proste animacje" />
+    <MESSAGE value="formularz kontaktowy" />
+    <MESSAGE value="tworzenie api" />
+    <MESSAGE value="dodawanie kom js (bug: zla kolejnosc)" />
+    <MESSAGE value="ajax kometarze" />
+    <MESSAGE value="Naprawa luki w api" />
+    <option name="LAST_COMMIT_MESSAGE" value="Naprawa luki w api" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="917" y="294" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1614018458251">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="917" y="294" key="#com.intellij.ide.macro.MacrosDialog/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1614018458251" />
+    <state x="906" y="418" width="460" height="341" key="#com.intellij.tools.ToolEditorDialog" timestamp="1614018559540">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="906" y="418" width="460" height="341" key="#com.intellij.tools.ToolEditorDialog/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1614018559540" />
+    <state x="1544" y="823" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1608598595514">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="1544" y="823" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1608598595514" />
+    <state x="-1903" y="409" width="1496" height="596" key="DiffContextDialog" timestamp="1615634157720">
+      <screen x="-1920" y="231" width="1536" height="920" />
+    </state>
+    <state x="-1902" y="445" width="1496" height="596" key="DiffContextDialog/0.0.2048.1112/-1920.231.1536.920@-1920.231.1536.920" timestamp="1611791657287" />
+    <state x="-1903" y="409" width="1496" height="596" key="DiffContextDialog/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1615634157720" />
+    <state x="805" y="311" key="FileChooserDialogImpl" timestamp="1615631356628">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="-1316" y="488" key="FileChooserDialogImpl/0.0.2048.1112/-1920.231.1536.920@-1920.231.1536.920" timestamp="1613934970895" />
+    <state x="805" y="311" key="FileChooserDialogImpl/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1615631356628" />
+    <state width="1708" height="274" key="GridCell.Tab.0.bottom" timestamp="1609205142267">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="1708" height="274" key="GridCell.Tab.0.bottom/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1609205142267" />
+    <state width="1708" height="274" key="GridCell.Tab.0.center" timestamp="1609205142267">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="1708" height="274" key="GridCell.Tab.0.center/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1609205142267" />
+    <state width="1708" height="274" key="GridCell.Tab.0.left" timestamp="1609205142267">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="1708" height="274" key="GridCell.Tab.0.left/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1609205142267" />
+    <state width="1708" height="274" key="GridCell.Tab.0.right" timestamp="1609205142267">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="1708" height="274" key="GridCell.Tab.0.right/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1609205142267" />
+    <state width="1708" height="274" key="GridCell.Tab.1.bottom" timestamp="1609205142267">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="1708" height="274" key="GridCell.Tab.1.bottom/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1609205142267" />
+    <state width="1708" height="274" key="GridCell.Tab.1.center" timestamp="1609205142267">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="1708" height="274" key="GridCell.Tab.1.center/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1609205142267" />
+    <state width="1708" height="274" key="GridCell.Tab.1.left" timestamp="1609205142267">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="1708" height="274" key="GridCell.Tab.1.left/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1609205142267" />
+    <state width="1708" height="274" key="GridCell.Tab.1.right" timestamp="1609205142267">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="1708" height="274" key="GridCell.Tab.1.right/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1609205142267" />
+    <state x="663" y="318" key="MultipleFileMergeDialog" timestamp="1614527985381">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="663" y="318" key="MultipleFileMergeDialog/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1614527985381" />
+    <state x="852" y="232" key="RollbackChangesDialog" timestamp="1615634020396">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="852" y="232" key="RollbackChangesDialog/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1615634020396" />
+    <state x="646" y="233" key="SettingsEditor" timestamp="1614018561609">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="646" y="233" key="SettingsEditor/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1614018561609" />
+    <state x="843" y="484" key="VCS.ChangelistChooser" timestamp="1610371807700">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="843" y="484" key="VCS.ChangelistChooser/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1610371807700" />
+    <state x="750" y="484" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610634440546">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="750" y="484" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1610634440546" />
+    <state x="-1662" y="415" width="946" height="758" key="dock-window-1" timestamp="1614528227978">
+      <screen x="-1920" y="231" width="1536" height="920" />
+    </state>
+    <state x="394" y="358" width="1550" height="342" key="dock-window-1/0.0.2048.1112/-1920.231.1536.920@-1920.231.1536.920" timestamp="1613934972021" />
+    <state x="-1662" y="415" width="946" height="758" key="dock-window-1/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1614528227978" />
+    <state x="-1792" y="303" width="1310" height="901" key="dock-window-2" timestamp="1613947657493">
+      <screen x="-1920" y="231" width="1536" height="920" />
+    </state>
+    <state x="-1792" y="303" width="1310" height="901" key="dock-window-2/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1613947657493" />
+    <state x="-1920" y="304" width="1550" height="803" key="dock-window-3" timestamp="1610681613857">
+      <screen x="-1920" y="231" width="1536" height="920" />
+    </state>
+    <state x="-1920" y="304" width="1550" height="803" key="dock-window-3/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1610681613857" />
+    <state x="675" y="350" width="672" height="678" key="search.everywhere.popup" timestamp="1609119878338">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="675" y="350" width="672" height="678" key="search.everywhere.popup/0.0.2048.1112/-1920.231.1536.920@0.0.2048.1112" timestamp="1609119878338" />
+  </component>
+</project>
