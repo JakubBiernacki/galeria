@@ -34,7 +34,7 @@ urlpatterns = [
     path('api/',include('api.urls')),
 
 
-    path('favicon.ico', RedirectView.as_view(url='/media/favicon.ico')),
+    # path('favicon.ico', RedirectView.as_view(url='/media/favicon.ico')),
     path("register/",user_views.rejestracja,name='register'),
     path("login/",auth_views.LoginView.as_view(template_name='users/login.html'),name='login'),
     path("logout/",user_views.logout_user,name='logout'),

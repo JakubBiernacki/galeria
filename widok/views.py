@@ -49,8 +49,12 @@ ilosc_obrazkow_na_strone = 9
 class PhotoListView(ListView):
     model = Obrazek
     template_name = 'widok/home.html'
-    ordering = ['-data_publikacji']
+
     paginate_by = ilosc_obrazkow_na_strone
+
+    def get_queryset(self):
+        queryset = Obrazek.objects.all().prefetch_related('kometarz_set','oceny_set').order_by('-data_publikacji')
+        return queryset
 
 #lista uzytkownika
 
@@ -63,8 +67,10 @@ class UserPostView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username = self.kwargs.get('username'))
+
+
         self.kwargs['img'] = user.profile.image.url
-        return  Obrazek.objects.filter(autor = user).order_by('-data_publikacji')
+        return  Obrazek.objects.filter(autor = user).order_by('-data_publikacji').prefetch_related('kometarz_set','oceny_set')
 
 # Usuwanie
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
