@@ -165,7 +165,9 @@ def edit(request,id_obrazka:int):
 
 def detail(request,id_obrazka:int):
     obrazek = get_object_or_404(Obrazek,pk=id_obrazka)
-    czy_ocenil = obrazek.czy_ocenil(request.user.id) if request.user.id else False
+    user = request.user
+
+    czy_ocenil = obrazek.czy_ocenil(user) if user.id else 0
 
     obrazek_dane = {
         'obrazek':obrazek,

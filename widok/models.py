@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
-
+from django.db.models import Avg
 from django.dispatch import receiver
 import os
 from django.db.models.signals import post_delete,pre_save,post_save
@@ -21,17 +21,19 @@ class Obrazek(models.Model):
 
     def __str__(self):
         return self.tytul
+
+
     def oceny_count(self):
         return self.oceny_set.all().count()
 
     def srednia_ocen(self):
+        # return self.oceny_set.all().aggregate(Avg('ocena'))['ocena__avg']
         return round(sum([int(x.ocena) for x in self.oceny_set.all()])/ self.oceny_count(), 1 ) if self.oceny_count()!=0 else 0
 
-    def czy_ocenil(self,user_id):
-        user = User.objects.get(id=user_id)
-        if not self.oceny_set.filter(autor=user).count():
-            return 0
-        return self.oceny_set.get(autor=user).ocena
+
+    def czy_ocenil(self,user):
+
+        return self.oceny_set.get(autor=user).ocena or None
 
 
 
