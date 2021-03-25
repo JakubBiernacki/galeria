@@ -6,6 +6,7 @@ from django.dispatch import receiver
 import os
 from django.db.models.signals import post_delete,pre_save,post_save
 
+from django.core.cache import cache
 from django.contrib.auth.models import User
 # Create your models here.
 from PIL import Image, ImageOps
@@ -49,6 +50,11 @@ class Obrazek(models.Model):
 def auto_delete_file_on_delete(sender, instance, **kwargs):
     if instance.obrazek_file:
         os.remove(instance.obrazek_file.path)
+    cache.delete('obrazy')
+
+@receiver(post_save,sender=Obrazek)
+def clear_cache(sender,**kwargs):
+    cache.delete('obrazy')
 
 
 @receiver(pre_save, sender=Obrazek)
@@ -64,6 +70,8 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
     new_file = instance.obrazek_file
     if not old_file == new_file:
         os.remove(old_file.path)
+
+
 
 
 

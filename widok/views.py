@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+
 from .models import Obrazek
 from .forms import Add_obrazek_link,Add_obrazek_file
 
@@ -11,6 +12,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DeleteView
 
 from django.contrib.auth.models import User
+
+from django.core.cache import cache
+
 
 #wysyłanie maila
 
@@ -46,15 +50,19 @@ def link_check(path):
 ilosc_obrazkow_na_strone = 9
 
 #główny widok
+
 class PhotoListView(ListView):
     model = Obrazek
     template_name = 'widok/home.html'
 
     paginate_by = ilosc_obrazkow_na_strone
 
+
+
     def get_queryset(self):
         queryset = Obrazek.objects.all().prefetch_related('kometarz_set','oceny_set').order_by('-data_publikacji')
-        return queryset
+
+        return cache.get_or_set('obrazy',queryset,100)
 
 #lista uzytkownika
 
@@ -66,12 +74,13 @@ class UserPostView(ListView):
     paginate_by = ilosc_obrazkow_na_strone
 
     def get_queryset(self):
-        user = get_object_or_404(User, username = self.kwargs.get('username'))
+        user = get_object_or_404(User.objects.select_related('profile'), username = self.kwargs.get('username'))
 
 
         self.kwargs['img'] = user.profile.image.url
-        return  Obrazek.objects.filter(autor = user).order_by('-data_publikacji').prefetch_related('kometarz_set','oceny_set')
-
+        queryset =  Obrazek.objects.filter(autor = user).order_by('-data_publikacji').prefetch_related('kometarz_set','oceny_set')
+        return cache.get_or_set(f'obrazy_user{user.id}',queryset,100)
+        # return queryset
 # Usuwanie
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Obrazek
@@ -164,10 +173,16 @@ def edit(request,id_obrazka:int):
 
 
 def detail(request,id_obrazka:int):
-    obrazek = get_object_or_404(Obrazek,pk=id_obrazka)
-    user = request.user
 
-    czy_ocenil = obrazek.czy_ocenil(user) if user.id else 0
+    obrazek = get_object_or_404(Obrazek.objects.select_related('autor','autor__profile'),pk=id_obrazka)
+
+
+    user = request.user
+    czy_ocenil = 0
+    if user.id:
+        if ocena := obrazek.oceny_set.filter(autor = user):
+              czy_ocenil = ocena[0].ocena
+
 
     obrazek_dane = {
         'obrazek':obrazek,

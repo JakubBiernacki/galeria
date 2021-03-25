@@ -146,6 +146,10 @@ document.querySelector('.dodaj_kom').addEventListener('click',()=>{
 
         kom_pole.value = ""
         // glowne_pole.innerHTML = ""
+        if(glowne_pole.innerText == "Brak komentarzy"){
+            glowne_pole.innerHTML = ""
+            }
+        
         
 
         Generuj_kometarze()  

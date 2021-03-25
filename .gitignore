@@ -1,8 +1,4 @@
 .idea/
-.idea/galeria.iml
-.idea/misc.xml
-.idea/modules.xml
-.idea/inspectionProfiles/profiles_settings.xml
 widok/__pycache__/
 db.sqlite3
 widok/__pycache__/

@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 {%block content%}
 {% load static %}
-
+{% load cache %}
 
 <link rel="stylesheet" href="{%static 'css/ikony.css'%}">
 <link rel="stylesheet" href="{%static 'css/star.css'%}">
@@ -9,6 +9,8 @@
 
 
     <!--    ikony-->
+
+
     <div class="row d-flex justify-content-between">
         <a id="back" class="btn  btn-lg">
             <svg id="cofnij" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
@@ -54,7 +56,7 @@
     {%endif%}
     </p>
 
-
+{% cache 500 detail obrazek%}
     <div class="row text-right d-md-none ">
         <small class="text-muted col-12">Data publikacji: {{ obrazek.data_publikacji|date:"F d Y" }}</small>
     </div>
@@ -86,6 +88,7 @@
             </div>
             <div class="row p  justify-content-between">
                 <div class="col-12 col-md-6 h1">Tytuł: {{obrazek.tytul}}</div>
+                {%endcache%}
                 <div class="col-12 col-lg-6 text-lg-right podglad_ocen">
                     <!--                    średnia gwiazdek w podglądzie-->
 
@@ -100,6 +103,7 @@
                     </span>
                 </div>
             </div>
+
             <!--                formularz oceny-->
             <div name="star">
                 {%if user.is_authenticated %}
