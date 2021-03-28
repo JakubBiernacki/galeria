@@ -12,7 +12,7 @@
 
 
     <div class="row d-flex justify-content-between">
-        <a id="back" class="btn  btn-lg">
+        <a id="back" onclick="window.history.back()" class="btn  btn-lg">
             <svg id="cofnij" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
                  xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -225,8 +225,8 @@
 <!-- tymczasowe -->
 
 <script>
-    const obrazek_id = {{obrazek.id}}
-    const user_id = {{user.id}}
+    const obrazek_id = window.location.href.slice(0, -1).split('/').pop()
+
 
     function getCookie(name) {
       let cookieValue = null;
@@ -243,10 +243,9 @@
       }
       return cookieValue;
     }
-
 </script>
 
-<script src="{%static 'js/detail.js'%}"></script>
+
 <script src="{%static 'js/detail_gwiazdki.js'%}"></script>
 <script src="{%static 'js/detail_kometarze.js'%}"></script>
 

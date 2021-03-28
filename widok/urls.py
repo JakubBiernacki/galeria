@@ -1,11 +1,9 @@
 from django.urls import path
 from . import views
-from django.views.decorators.cache import cache_page
-from users import views as user_views
+
 
 urlpatterns = [
     path('',views.PhotoListView.as_view(),name='index'),
-
 
     path('user/<str:username>',views.UserPostView.as_view(),name='user-posts'),
 

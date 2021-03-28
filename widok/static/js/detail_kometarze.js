@@ -2,6 +2,7 @@
 window.onload = Generuj_kometarze()
 
 
+
 const glowne_pole = document.querySelector('.media-list')
 
 const formater = new Intl.DateTimeFormat( 'pl', {
@@ -18,14 +19,14 @@ const formater = new Intl.DateTimeFormat( 'pl', {
 let list_snapshot = []
 async function Generuj_kometarze(){
     
-    const komentarze = await fetch(`http://127.0.0.1:8000/api/Kometarze_Obrazka/${obrazek_id}/`).then(response => response.json())
+    const komentarze = await fetch(`http://127.0.0.1:8000/api/obrazek/${obrazek_id}/komentarze/`).then(response => response.json())
 
     if(!komentarze.length){
         glowne_pole.innerHTML = '<div class=" h2 pl-5">Brak komentarzy</div>'
         return
     }
 
-    console.log(komentarze);
+    
 
     const autorzy_id = []
     const autorzy = []
@@ -36,11 +37,10 @@ async function Generuj_kometarze(){
         }
     })
 
-    console.log(autorzy_id);
 
 
     for(id of autorzy_id){
-        const autor = await fetch(`http://127.0.0.1:8000/api/user_profile/${id}/`).then(r=> r.json())
+        const autor = await fetch(`http://127.0.0.1:8000/api/profile/${id}/`).then(r=> r.json())
         autorzy.push(autor)
     }
 
@@ -91,20 +91,6 @@ async function Generuj_kometarze(){
 
     list_snapshot = komentarze
 
-
-    // komentarze.forEach(async kom => {
-        
-    //     console.log(kom);
-    //     const autor = await fetch(`http://127.0.0.1:8000/api/user_profile/${kom.autor}/`).then(r=> r.json())
-
-    //     console.log(autor);
-    //     console.log('-------------------------------');
-    //     glowne_pole.innerHTML+= `kom: ${kom.tresc} autor: <br>`
-        
-
-    // });
-
-
     
 }
 
@@ -129,12 +115,10 @@ document.querySelector('.dodaj_kom').addEventListener('click',()=>{
     }
 
     dane = {
-        tresc : kom_pole.value,
-        obrazek : obrazek_id,
-        autor : user_id
+        tresc : kom_pole.value,  
     }
 
-    fetch(`http://127.0.0.1:8000/api/Kometarze_Obrazka/`,{
+    fetch(`http://127.0.0.1:8000/api/obrazek/${obrazek_id}/komentarze/`,{
         method : 'POST',
         headers: {
             "Content-type": "application/json",

@@ -1,13 +1,12 @@
-from django.urls import path,include
+from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import KometarzeObrazkaViewSet,OcenyObrazkaViewSet,UserProfileViewSet
+from .views import ObrazekViewSet,UserProfileViewSet
 
 router = DefaultRouter()
-router.register('Kometarze_Obrazka',KometarzeObrazkaViewSet,basename='Kometarze_Obrazka')
-router.register('Oceny_Obrazka',OcenyObrazkaViewSet,basename='oceny_Obrazka')
-router.register('user_profile',UserProfileViewSet,basename='userprofile')
+router.register('obrazek', ObrazekViewSet, basename='Obrazek')
+router.register('profile',UserProfileViewSet , basename='Obrazek')
 
 urlpatterns = [
-    path('',include(router.urls))
+    path('', include(router.urls))
 
 ]
