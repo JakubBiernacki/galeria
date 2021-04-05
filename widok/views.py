@@ -5,60 +5,32 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Obrazek
 from .forms import Add_obrazek_link, Add_obrazek_file
+from .utils import link_check
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DeleteView
+from django.views.generic import ListView, DeleteView,DetailView,View
+
 
 from django.contrib.auth.models import User
 
 from django.core.cache import cache
 
 
-# wysyłanie maila
-
-
-def link_check(path):
-    from PIL import Image
-    import requests
-    from io import BytesIO
-
-    if path.startswith('https://') and path.endswith(('.jpg', '.png', '.jpeg')):
-        try:
-            response = requests.get(path)
-            img = Image.open(BytesIO(response.content))
-
-        except:
-            error = "Nie można pobrać obrazu (link jest niepoprawny)"
-            return False, error
-        w, h = img.size
-        if w >= 640 and h >= 480:
-            return True, False
-        else:
-            error = 'obraz ma za niską rozdzielczość (min 640x480px)'
-
-
-    else:
-        error = "Link jest niepoprawny lub niebezpieczny"
-
-    return False, error
-
-
-ilosc_obrazkow_na_strone = 9
-
 
 # główny widok
+ilosc_obrazkow_na_strone = 9
+
 
 class PhotoListView(ListView):
     model = Obrazek
     template_name = 'widok/home.html'
-
     paginate_by = ilosc_obrazkow_na_strone
 
     def get_queryset(self):
         queryset = Obrazek.objects.all().prefetch_related('kometarz_set', 'oceny_set').order_by('-data_publikacji')
 
         return cache.get_or_set('obrazy', queryset, 500)
-
+        # return queryset
 
 # lista uzytkownika
 
@@ -70,7 +42,6 @@ class UserPostView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User.objects.select_related('profile'), username=self.kwargs.get('username'))
-
         self.kwargs['img'] = user.profile.image.url
         queryset = Obrazek.objects.filter(autor=user).order_by('-data_publikacji').prefetch_related('kometarz_set',
                                                                                                     'oceny_set')
@@ -85,9 +56,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         obrazek = self.get_object()
-        if self.request.user == obrazek.autor or self.request.user.is_superuser:
-            return True
-        return False
+        return self.request.user == obrazek.autor or self.request.user.is_superuser
+
 
 
 # Dodawanie obrazka
@@ -159,21 +129,25 @@ def edit(request, id_obrazka: int):
         return redirect('detail', id_obrazka=obrazek.id)
 
 
-def detail(request, id_obrazka: int):
-    obrazek = get_object_or_404(Obrazek.objects.select_related('autor', 'autor__profile'), pk=id_obrazka)
 
-    user = request.user
-    czy_ocenil = 0
-    if user.id:
-        if ocena := obrazek.oceny_set.filter(autor=user):
-            czy_ocenil = ocena[0].ocena
 
-    obrazek_dane = {
-        'obrazek': obrazek,
-        'czy_ocenil': czy_ocenil,
-        'podglad_gwiazdek': [5, 4, 3, 2, 1],
-    }
+class ObrazekDetailView(DetailView):
+    queryset = Obrazek.objects.select_related('autor', 'autor__profile')
+    template_name = 'widok/detail.html'
 
-    return render(request, 'widok/detail.html', obrazek_dane)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-# kontakt
+        user = self.request.user
+        czy_ocenil = 0
+        if user.id:
+            if ocena := self.object.oceny_set.filter(autor=user):
+                czy_ocenil = ocena[0].ocena
+
+        context['czy_ocenil'] = czy_ocenil
+        context['podglad_gwiazdek'] = [5, 4, 3, 2, 1]
+        return context
+
+
+
+

@@ -33,7 +33,7 @@ function dodaj_ocene(){
     
   }
 
-  fetch(`http://127.0.0.1:8000/api/obrazek/${obrazek_id}/oceny/`,{
+  fetch(`/api/obrazek/${obrazek_id}/oceny/`,{
       method : 'POST',
       headers: {
           "Content-type": "application/json",
@@ -63,7 +63,7 @@ function dodaj_ocene(){
 
 function Generuj_podglad_gwiazdek(){
 
-  fetch(`http://127.0.0.1:8000/api/obrazek/${obrazek_id}/oceny/`)
+  fetch(`/api/obrazek/${obrazek_id}/oceny/`)
   .then(response => response.json())
   .then(oceny => {
 

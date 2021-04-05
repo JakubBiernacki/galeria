@@ -19,7 +19,7 @@ const formater = new Intl.DateTimeFormat( 'pl', {
 let list_snapshot = []
 async function Generuj_kometarze(){
     
-    const komentarze = await fetch(`http://127.0.0.1:8000/api/obrazek/${obrazek_id}/komentarze/`).then(response => response.json())
+    const komentarze = await fetch(`/api/obrazek/${obrazek_id}/komentarze/`).then(response => response.json())
 
     if(!komentarze.length){
         glowne_pole.innerHTML = '<div class=" h2 pl-5">Brak komentarzy</div>'
@@ -40,7 +40,7 @@ async function Generuj_kometarze(){
 
 
     for(id of autorzy_id){
-        const autor = await fetch(`http://127.0.0.1:8000/api/profile/${id}/`).then(r=> r.json())
+        const autor = await fetch(`/api/profile/${id}/`).then(r=> r.json())
         autorzy.push(autor)
     }
 
@@ -104,21 +104,24 @@ document.querySelector('.dodaj_kom').addEventListener('click',()=>{
     
 
     if(!kom_pole.value){
-        document.querySelector('.toast-ikona').innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+        document.querySelector('.toast-ikona').innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" style='color:red' width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
       </svg>`
         document.querySelector('.toast-body').innerText = 'Nic nie wpisano'
     
         $('.toast').toast('show')
+        kom_pole.classList.add('pole_kom_requied')
+        kom_pole
+
         return
 
     }
-
+    kom_pole.classList.remove('pole_kom_requied')
     dane = {
         tresc : kom_pole.value,  
     }
 
-    fetch(`http://127.0.0.1:8000/api/obrazek/${obrazek_id}/komentarze/`,{
+    fetch(`/api/obrazek/${obrazek_id}/komentarze/`,{
         method : 'POST',
         headers: {
             "Content-type": "application/json",

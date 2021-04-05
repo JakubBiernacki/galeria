@@ -56,7 +56,8 @@
     {%endif%}
     </p>
 
-{% cache 500 detail obrazek%}
+
+
     <div class="row text-right d-md-none ">
         <small class="text-muted col-12">Data publikacji: {{ obrazek.data_publikacji|date:"F d Y" }}</small>
     </div>
@@ -88,7 +89,8 @@
             </div>
             <div class="row p  justify-content-between">
                 <div class="col-12 col-md-6 h1">Tytuł: {{obrazek.tytul}}</div>
-                {%endcache%}
+
+
                 <div class="col-12 col-lg-6 text-lg-right podglad_ocen">
                     <!--                    średnia gwiazdek w podglądzie-->
 
@@ -197,7 +199,7 @@
                                         <button class="dodaj_kom btn btn-primary">dodaj</button>
                                     
                                     {%else%}
-                                    <p class="mt-5 mb-5"><a href="{% url 'login' %}?next={{request.path}}#komentarz">
+                                    <p class="mt-5 mb-5"><a href="{% url 'login' %}?next={{request.path}}">
                                         Zaloguj się</a> aby dodać komentarz</p>
                                     {%endif%}
                                     <div class="clearfix"></div>
@@ -225,7 +227,8 @@
 <!-- tymczasowe -->
 
 <script>
-    const obrazek_id = window.location.href.slice(0, -1).split('/').pop()
+    const link_values = window.location.href.slice(0, -1).split('/')
+    const obrazek_id = link_values[link_values.indexOf('obrazek')+1]
 
 
     function getCookie(name) {

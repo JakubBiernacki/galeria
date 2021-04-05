@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
-from django.db.models import Avg
+import statistics
 
 
 class Obrazek(models.Model):
@@ -16,18 +16,11 @@ class Obrazek(models.Model):
     def __str__(self):
         return self.tytul
 
-    def oceny_count(self):
-        return self.oceny_set.all().count()
-
     def srednia_ocen(self):
-        # return self.oceny_set.all().aggregate(Avg('ocena'))['ocena__avg']
-        return round(sum([int(x.ocena) for x in self.oceny_set.all()]) / self.oceny_count(),
-                     1) if self.oceny_count() != 0 else 0
-
-    def czy_ocenil(self, user):
-        if not self.oceny_set.filter(autor=user).count():
-            return 0
-        return self.oceny_set.get(autor=user).ocena
+        if oceny := self.oceny_set.all():
+            avg = sum([x.ocena for x in oceny]) / oceny.count()
+            return round(avg, 1)
+        return 0
 
 
 class Kometarz(models.Model):
