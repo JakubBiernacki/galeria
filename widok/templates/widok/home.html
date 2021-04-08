@@ -3,6 +3,7 @@
 {% load static %}
 
 
+
 <div class="container" style="height: 100%">
     <!--    info-->
     {%if messages%}
@@ -29,8 +30,8 @@
 
         {%for obrazek in object_list %}
         <figure class="col-md-6 col-lg-4">
-            <a href="{%url 'detail' id_obrazka=obrazek.id%}">
-                <div class="obr">
+            <a href="{%url 'detail' obrazek.id%}">
+                <div class="obr obr_r">
                     <img
                             {%if obrazek.obrazek_path%}
                             src="{{obrazek.obrazek_path}}"

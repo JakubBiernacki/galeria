@@ -14,11 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
-
-#static file
+# static file
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -27,22 +26,19 @@ from django.views.generic.base import RedirectView
 from users import views as user_views
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('widok.urls')),
-    path('api/',include('api.urls')),
+    path('', include('widok.urls')),
+    path('api/', include('api.urls')),
 
-
-    path('favicon.ico', RedirectView.as_view(url='/media/favicon.ico')),
-    path("register/",user_views.rejestracja,name='register'),
-    path("login/",auth_views.LoginView.as_view(template_name='users/login.html'),name='login'),
-    path("logout/",user_views.logout_user,name='logout'),
+    # path('favicon.ico', RedirectView.as_view(url='/media/favicon.ico')),
+    path("register/", user_views.rejestracja, name='register'),
+    path("login/", auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path("logout/", user_views.logout_user, name='logout'),
     path("profile/", user_views.profile, name='profile'),
-    path('kontakt/',user_views.contact,name='contact'),
+    path('kontakt/', user_views.contact, name='contact'),
 
-
-    #reset hasla
+    # reset hasla
     path('password-reset/',
          auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'),
          name='password_reset'),
@@ -59,12 +55,12 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
          name='password_reset_complete'),
 
-
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns += path('__debug__/', include(debug_toolbar.urls)),

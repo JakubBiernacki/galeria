@@ -19,7 +19,6 @@ const ocena_button = document.querySelector('.wyslij_ocene') || false
 
 const podglad_gwiazdek = document.querySelector('.podglad_ocen')
 
-// const ilosc_ocen = document.querySelector('.count_ocen')
 
 if(ocena_button)ocena_button.addEventListener('click',dodaj_ocene)
 
@@ -27,15 +26,14 @@ function dodaj_ocene(){
   let nowa_ocena
 
   const radios = document.querySelectorAll("input[name='ocena']")
-  radios.forEach(radio => ((radio.checked)?nowa_ocena = radio.value : false))
-  console.log(obrazek_id,user_id);
+  radios.forEach(radio => ((radio.checked) ? nowa_ocena = radio.value : false))
+ 
   const dane = {
     ocena : nowa_ocena,
-    obrazek : obrazek_id,
-    autor : user_id
+    
   }
 
-  fetch(`http://127.0.0.1:8000/api/Oceny_Obrazka/`,{
+  fetch(`/api/obrazek/${obrazek_id}/oceny/`,{
       method : 'POST',
       headers: {
           "Content-type": "application/json",
@@ -65,19 +63,19 @@ function dodaj_ocene(){
 
 function Generuj_podglad_gwiazdek(){
 
-  fetch(`http://127.0.0.1:8000/api/Oceny_Obrazka/${obrazek_id}/`)
+  fetch(`/api/obrazek/${obrazek_id}/oceny/`)
   .then(response => response.json())
   .then(oceny => {
 
     podglad_gwiazdek.innerHTML = ""
     
     let srednia = 0
-
+    
     if(oceny.length)
         srednia = oceny.map(a=>a.ocena).reduce((a,v,i)=>(a*i+v)/(i+1))
     
     
-    // ilosc_ocen.innerText = oceny.length
+   
     
     for(let i=0;i<Math.floor(srednia);i++){
       podglad_gwiazdek.innerHTML+=full_star
@@ -93,8 +91,6 @@ function Generuj_podglad_gwiazdek(){
 
     podglad_gwiazdek.innerHTML+=`<span class="font-weight-light  h4">${srednia.toFixed(1)}<small class='count_ocen text-muted'>${oceny.length} </small></span>`
     
-
-
 
   })
 

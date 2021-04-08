@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 {%block content%}
 {% load static %}
-
+{% load cache %}
 
 <link rel="stylesheet" href="{%static 'css/ikony.css'%}">
 <link rel="stylesheet" href="{%static 'css/star.css'%}">
@@ -9,8 +9,10 @@
 
 
     <!--    ikony-->
+
+
     <div class="row d-flex justify-content-between">
-        <a id="back" class="btn  btn-lg">
+        <a id="back" onclick="window.history.back()" class="btn  btn-lg">
             <svg id="cofnij" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
                  xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -55,6 +57,7 @@
     </p>
 
 
+
     <div class="row text-right d-md-none ">
         <small class="text-muted col-12">Data publikacji: {{ obrazek.data_publikacji|date:"F d Y" }}</small>
     </div>
@@ -86,6 +89,8 @@
             </div>
             <div class="row p  justify-content-between">
                 <div class="col-12 col-md-6 h1">Tytuł: {{obrazek.tytul}}</div>
+
+
                 <div class="col-12 col-lg-6 text-lg-right podglad_ocen">
                     <!--                    średnia gwiazdek w podglądzie-->
 
@@ -100,6 +105,7 @@
                     </span>
                 </div>
             </div>
+
             <!--                formularz oceny-->
             <div name="star">
                 {%if user.is_authenticated %}
@@ -193,7 +199,7 @@
                                         <button class="dodaj_kom btn btn-primary">dodaj</button>
                                     
                                     {%else%}
-                                    <p class="mt-5 mb-5"><a href="{% url 'login' %}?next={{request.path}}#komentarz">
+                                    <p class="mt-5 mb-5"><a href="{% url 'login' %}?next={{request.path}}">
                                         Zaloguj się</a> aby dodać komentarz</p>
                                     {%endif%}
                                     <div class="clearfix"></div>
@@ -221,8 +227,9 @@
 <!-- tymczasowe -->
 
 <script>
-    const obrazek_id = {{obrazek.id}}
-    const user_id = {{user.id}}
+    const link_values = window.location.href.slice(0, -1).split('/')
+    const obrazek_id = link_values[link_values.indexOf('obrazek')+1]
+
 
     function getCookie(name) {
       let cookieValue = null;
@@ -239,10 +246,9 @@
       }
       return cookieValue;
     }
-
 </script>
 
-<script src="{%static 'js/detail.js'%}"></script>
+
 <script src="{%static 'js/detail_gwiazdki.js'%}"></script>
 <script src="{%static 'js/detail_kometarze.js'%}"></script>
 

@@ -1,8 +1,4 @@
 .idea/
-.idea/galeria.iml
-.idea/misc.xml
-.idea/modules.xml
-.idea/inspectionProfiles/profiles_settings.xml
 widok/__pycache__/
 db.sqlite3
 widok/__pycache__/
@@ -11,8 +7,8 @@ media/profile_img/
 users/__pycache__/
 galeria/__pycache__/
 /users/migrations/
-/media/img_file/sdsd.jpg
+/media/img_file/
 api/__pycache__/
 users/__pycache__/c
 widok/migrations/
-
+cache/
