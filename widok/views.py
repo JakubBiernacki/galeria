@@ -79,7 +79,7 @@ def add(request, opcja):
 
                 obrazek.save()
 
-                return redirect("detail", id_obrazka=obrazek.pk)
+                return redirect("detail", pk=obrazek.pk)
             else:
                 messages.error(request, link_ok[1])
                 return render(request, 'widok/form.html', {'form': form, 'przycisk': 'Dodaj', 'opcja': opcja})
@@ -114,10 +114,10 @@ def edit(request, id_obrazka: int):
                     if obrazek.obrazek_path != old_path:
                         obrazek.oceny_set.all().delete()
 
-                    return redirect('detail', id_obrazka=obrazek.id)
+                    return redirect('detail', pk=obrazek.id)
                 else:
                     messages.error(request, link_ok[1])
-                    return redirect('edit', id_obrazka=obrazek.id)
+                    return redirect('edit', pk=obrazek.id)
 
         else:
             form = Add_obrazek_link(instance=obrazek) if obrazek.obrazek_path else Add_obrazek_file(instance=obrazek)
@@ -126,7 +126,7 @@ def edit(request, id_obrazka: int):
 
     else:
         messages.error(request, "Nie masz uprawnień do tej operacji")
-        return redirect('detail', id_obrazka=obrazek.id)
+        return redirect('detail', pk=obrazek.id)
 
 
 

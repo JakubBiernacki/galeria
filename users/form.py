@@ -14,10 +14,13 @@ class Register_Form(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
     def clean(self):
+        super().clean()
+
         email = self.cleaned_data.get('email')
 
         if User.objects.filter(email=email).exists() or '@jbiernacki.pl' in email:
             raise ValidationError("Intnieje użytkownik o takim emailu")
+
         return self.cleaned_data
 
 
