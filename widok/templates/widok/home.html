@@ -3,7 +3,6 @@
 {% load static %}
 
 
-
 <div class="container" style="height: 100%">
     <!--    info-->
     {%if messages%}
@@ -39,7 +38,7 @@
                             src="{{obrazek.obrazek_file.url}}"
                             {%endif%}
                             style="height:100%; width:100%"
-                         class="img-fluid zdjecie rounded ">
+                            class="img-fluid zdjecie rounded ">
                 </div>
             </a>
             <div class="obr-bottom">
@@ -67,11 +66,7 @@
                 <button type="button" class="btn btn-outline-primary" {%if not page_obj.has_previous%}disabled{%endif%}>
 
                     Pierwsza
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                              d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
-                    </svg>
+                    <i class="fas fa-fast-backward"></i>
                 </button>
             </a>
         </div>
@@ -79,11 +74,7 @@
         <div class="btn-group mr-2 col-md-7 col-lg-6" role="group" aria-label="Second group">
             <!--previous-->
             <a class="btn btn-secondary {%if not page_obj.has_previous%}disabled" {%else%}"href="?page={{page_obj.previous_page_number}}{%endif%}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                 class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                      d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
-            </svg>
+            <i class="fas fa-step-backward"></i>
             Poprzednia</a>
 
             <!--Near-->
@@ -98,11 +89,7 @@
             <!--next-->
             <a class="btn btn-secondary {%if not page_obj.has_next%}disabled" {%else%}"
             href="?page={{page_obj.next_page_number}}" {%endif%}>Następna
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                 class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                      d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-            </svg>
+            <i class="fas fa-step-forward"></i>
             </a>
 
         </div>
@@ -110,11 +97,7 @@
         <div class="btn-group d-none d-md-block" role="group" aria-label="Third group">
             <a href="?page={{page_obj.paginator.num_pages}}">
                 <button type="button" class="btn btn-outline-primary" {%if not page_obj.has_next%}disabled{%endif%}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-arrow-90deg-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                              d="M14.854 4.854a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 4H3.5A2.5 2.5 0 0 0 1 6.5v8a.5.5 0 0 0 1 0v-8A1.5 1.5 0 0 1 3.5 5h9.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4z"/>
-                    </svg>
+                    <i class="fas fa-fast-forward"></i>
                     Ostatnia
                 </button>
             </a>

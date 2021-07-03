@@ -15,11 +15,7 @@
 
 
     <a class="btn  btn-lg" href=" {%if obrazek.id%} {%url 'detail' obrazek.id%} {%else%} / {%endif%}">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
-             xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-                  d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-        </svg>
+        <i class="fas fa-arrow-left"></i>
     </a>
     <div>
 
@@ -44,7 +40,8 @@
                             <label for="id_obrazek_path">Ścieżka do obrazka</label>
 
                             {{form.obrazek_path}}
-                            <small class="text-muted">Link musi być bazpieczny oraz obrazek musi mieć nie mniej niż 640x480</small>
+                            <small class="text-muted">Link musi być bazpieczny oraz obrazek musi mieć nie mniej niż
+                                640x480</small>
                             {%else%}
 
                             {{form.obrazek_file}}
@@ -63,8 +60,9 @@
 
                         {%if not obrazek%}
                         <div id="spin" class=" mt-5 d-flex align-items-center">
-                                  <strong>Podgląd obrazka...  </strong>
-                                  <div class="spinner-border ms-auto text-primary ml-3" role="status" aria-hidden="true"></div>
+                            <strong>Podgląd obrazka... </strong>
+                            <div class="spinner-border ms-auto text-primary ml-3" role="status"
+                                 aria-hidden="true"></div>
                         </div>
                         <img id="blah" style="max-height:200px; max-width:350px" class="rounded ">
                         {%else%}

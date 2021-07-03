@@ -1,8 +1,7 @@
 {%extends 'base.html'%}
 {%block content%}
 {%load crispy_forms_tags%}
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
 <div class="container">
     {%if messages%}
     {%for message in messages%}
@@ -14,14 +13,6 @@
     {%endfor%}
     {%endif%}
 
-
-    <!--    <form method="post">-->
-
-
-    <!--        <div class="form-group ">-->
-    <!--                <button class="btn btn-outline-primary" type="submit">Wyślij wiadomość</button>-->
-    <!--            </div>-->
-    <!--    </form>-->
 
 
     <div class="card mt-5">
