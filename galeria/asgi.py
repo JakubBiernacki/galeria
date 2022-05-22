@@ -8,9 +8,9 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/
 """
 
 import os
-
+from manage import mode
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'galeria.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', f'galeria.settings.{mode}')
 
 application = get_asgi_application()

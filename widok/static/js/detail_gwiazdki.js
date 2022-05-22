@@ -1,6 +1,6 @@
-const full_star = `<i class="fas fa-star"></i>`
-const half_star = `<i class="fas fa-star-half-alt"></i>`
-const empty_star = `<i class="far fa-star"></i>`
+const full_star = `<i class="fas fa-star h4"></i>`
+const half_star = `<i class="fas fa-star-half-alt h4"></i>`
+const empty_star = `<i class="far fa-star h4"></i>`
 
 
 
